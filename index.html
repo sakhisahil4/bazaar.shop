@@ -1,0 +1,4395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bazaar | Modern E-commerce Platform</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bazaar | Modern E-commerce Platform</title>
+    
+    <!-- ADD THIS FAVICON CODE -->
+    <link rel="icon" type="image/x-icon" href="file:///C:/Users/Hp/Downloads/Bazaar.png">
+    <link rel="apple-touch-icon" href="file:///C:/Users/Hp/Downloads/Bazaar.png">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Include Quill Editor -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Include Quill Editor -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <style>
+        /* Base Styles & Variables - Modern Theme */
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --primary-light: #3b82f6;
+            --secondary: #10b981;
+            --secondary-dark: #059669;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --light: #f8fafc;
+            --gray: #e2e8f0;
+            --gray-dark: #94a3b8;
+            --accent: #8b5cf6;
+            --border-radius: 12px;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --gradient: linear-gradient(135deg, #2563eb 0%, #8b5cf6 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            background: var(--gradient);
+            color: white;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: var(--transition);
+            text-decoration: none;
+            gap: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+            background: linear-gradient(135deg, #1d4ed8 0%, #7c3aed 100%);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            background: linear-gradient(135deg, var(--secondary) 0%, #0ea5e9 100%);
+        }
+
+        .btn-secondary:hover {
+            background: linear-gradient(135deg, var(--secondary-dark) 0%, #0284c7 100%);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-weight: 700;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-header p {
+            color: var(--gray-dark);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.1rem;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        /* Header & Navigation */
+        header {
+            background-color: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.95);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .logo i {
+            font-size: 2.2rem;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            padding: 8px 0;
+            font-size: 1.05rem;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a.active {
+            color: var(--primary);
+        }
+
+        nav ul li a.active::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient);
+            bottom: -5px;
+            left: 0;
+            border-radius: 3px;
+        }
+
+        .cart-icon {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--secondary);
+            color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: bold;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: var(--gradient);
+            opacity: 0.05;
+            border-radius: 50%;
+            z-index: 0;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            line-height: 1.2;
+            font-weight: 800;
+        }
+
+        .hero-content h1 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--gray-dark);
+            margin-bottom: 35px;
+            line-height: 1.7;
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: var(--transition);
+        }
+
+        .hero-image:hover img {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        /* Products Section */
+        .products-section {
+            padding: 100px 0;
+            background-color: white;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--gray);
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary-light);
+        }
+
+        .product-img {
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .product-card:hover .product-img img {
+            transform: scale(1.08);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: var(--secondary);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-info {
+            padding: 25px;
+        }
+
+        .product-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--dark);
+            font-weight: 600;
+        }
+
+        .product-price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .product-price .old-price {
+            font-size: 1.1rem;
+            color: var(--gray-dark);
+            text-decoration: line-through;
+        }
+
+        .product-rating {
+            color: #fbbf24;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .product-actions {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        /* My Orders Page Styles */
+        .my-orders-section {
+            padding: 80px 0;
+            background-color: #f8fafc;
+        }
+
+        .orders-container {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+        }
+
+        .orders-empty-state {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .orders-empty-state i {
+            font-size: 4rem;
+            color: var(--gray-dark);
+            margin-bottom: 20px;
+        }
+
+        .order-card {
+            border: 1px solid var(--gray);
+            border-radius: var(--border-radius);
+            margin-bottom: 25px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .order-card:hover {
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+            transform: translateY(-2px);
+        }
+
+        .order-header {
+            background: #f8fafc;
+            padding: 20px;
+            border-bottom: 1px solid var(--gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .order-id {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .order-date {
+            color: var(--gray-dark);
+            font-size: 0.95rem;
+        }
+
+        .order-body {
+            padding: 25px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .order-items {
+            grid-column: 1 / -1;
+        }
+
+        .order-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--gray);
+            gap: 20px;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .order-item-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .order-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .order-item-details {
+            flex: 1;
+        }
+
+        .order-item-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .order-item-price {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        .order-summary-col {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .order-total {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-top: 10px;
+        }
+
+        .order-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .order-actions .btn-small {
+            padding: 8px 16px;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 768px) {
+            .order-body {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .order-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+
+        /* Cart Page */
+        .cart-section {
+            padding: 80px 0;
+            background-color: #f8fafc;
+        }
+
+        .cart-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+        }
+
+        .cart-items {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+
+        .cart-item {
+            display: flex;
+            padding: 25px 0;
+            border-bottom: 1px solid var(--gray);
+            gap: 20px;
+        }
+
+        .cart-item-img {
+            width: 120px;
+            height: 120px;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .cart-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .quantity-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .quantity-btn {
+            width: 32px;
+            height: 32px;
+            background-color: var(--gray);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            transition: var(--transition);
+        }
+
+        .quantity-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .quantity {
+            font-weight: 700;
+            min-width: 30px;
+            text-align: center;
+        }
+
+        .remove-item {
+            color: var(--gray-dark);
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            transition: var(--transition);
+        }
+
+        .remove-item:hover {
+            color: #ef4444;
+        }
+
+        .cart-summary {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .summary-total {
+            font-size: 1.6rem;
+            font-weight: 800;
+            border-top: 2px solid var(--gray);
+            padding-top: 20px;
+            margin-top: 15px;
+            border-bottom: none;
+        }
+
+        /* Checkout Page */
+        .checkout-section {
+            padding: 80px 0;
+            background-color: #f8fafc;
+        }
+
+        .checkout-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .checkout-form, .order-summary {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 35px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid var(--gray);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-group input[readonly] {
+            background-color: #f8f9fa;
+            cursor: not-allowed;
+            border-color: #d1d5db;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        /* Payment method styles */
+        .payment-method {
+            background-color: #f8fafc;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            border: 1px solid var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .payment-method-option {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .payment-method-option input[type="radio"] {
+            width: auto;
+        }
+
+        .payment-method-option label {
+            margin: 0;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .payment-info {
+            color: var(--gray-dark);
+            font-size: 0.9rem;
+            margin-top: 10px;
+            padding-left: 30px;
+        }
+
+        /* Product Details Page */
+        .product-details-section {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .product-details-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+
+        .product-gallery {
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .main-product-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .product-thumbnails {
+            display: flex;
+            margin-top: 20px;
+            gap: 10px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border-radius: 10px;
+            cursor: pointer;
+            opacity: 0.7;
+            transition: var(--transition);
+            object-fit: cover;
+        }
+
+        .thumbnail.active {
+            opacity: 1;
+            border: 3px solid var(--primary);
+            transform: scale(1.05);
+        }
+
+        .product-info-details h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-weight: 800;
+        }
+
+        .product-price-large {
+            font-size: 2.5rem;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .product-price-large .old-price {
+            font-size: 1.8rem;
+            color: var(--gray-dark);
+            text-decoration: line-through;
+        }
+
+        .product-description {
+            margin-bottom: 30px;
+            color: var(--gray-dark);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .product-options {
+            margin-bottom: 30px;
+        }
+
+        .option-group {
+            margin-bottom: 25px;
+        }
+
+        .option-group label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .option-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .option-btn {
+            padding: 10px 20px;
+            background-color: var(--gray);
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .option-btn.active {
+            background: var(--gradient);
+            color: white;
+        }
+
+        /* Authentication Pages */
+        .auth-section {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 0;
+            background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .auth-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 45px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--gray);
+        }
+
+        .auth-header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .auth-header h2 {
+            font-size: 2.2rem;
+            color: var(--dark);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .auth-header p {
+            color: var(--gray-dark);
+        }
+
+        .auth-form .form-group {
+            margin-bottom: 25px;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--gray);
+            border: none;
+            color: var(--dark);
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .toggle-password:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .auth-footer {
+            text-align: center;
+            margin-top: 25px;
+            color: var(--gray-dark);
+        }
+
+        .auth-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .auth-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Admin Panel */
+        .admin-section {
+            padding: 40px 0;
+            min-height: 80vh;
+            background-color: #f8fafc;
+        }
+
+        .admin-container {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 30px;
+        }
+
+        .admin-sidebar {
+            background: var(--gradient);
+            border-radius: var(--border-radius);
+            padding: 30px 20px;
+            height: fit-content;
+            box-shadow: var(--shadow);
+        }
+
+        .admin-sidebar h3 {
+            color: white;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1.5rem;
+        }
+
+        .admin-menu {
+            list-style: none;
+        }
+
+        .admin-menu li {
+            margin-bottom: 10px;
+        }
+
+        .admin-menu li a {
+            display: flex;
+            align-items: center;
+            padding: 14px 18px;
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            border-radius: 10px;
+            transition: var(--transition);
+            gap: 12px;
+            font-weight: 500;
+        }
+
+        .admin-menu li a:hover, .admin-menu li a.active {
+            background-color: rgba(255, 255, 255, 0.15);
+            color: white;
+        }
+
+        .admin-content {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 35px;
+            box-shadow: var(--shadow);
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .admin-header h2 {
+            font-size: 2rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .stats-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .stat-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray);
+            transition: var(--transition);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-card h3 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+
+        .stat-card p {
+            color: var(--gray-dark);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+
+        .admin-table th, .admin-table td {
+            padding: 18px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--gray);
+        }
+
+        .admin-table th {
+            background-color: #f8fafc;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .admin-table tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .status {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            display: inline-block;
+        }
+
+        .status-pending {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+
+        .status-completed {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+
+        .status-processing {
+            background-color: #dbeafe;
+            color: #1e40af;
+        }
+
+        .status-shipped {
+            background-color: #f3e8ff;
+            color: #5b21b6;
+        }
+
+        .status-cancelled {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .btn-small {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+
+        /* EDIT EVERYTHING PAGE STYLES */
+        .edit-everything-section {
+            padding: 40px 0;
+            background-color: #f8fafc;
+        }
+
+        .edit-tabs {
+            display: flex;
+            background: white;
+            border-radius: var(--border-radius) var(--border-radius) 0 0;
+            overflow: hidden;
+            border-bottom: 2px solid var(--gray);
+        }
+
+        .edit-tab {
+            padding: 15px 30px;
+            background: white;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--gray-dark);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .edit-tab.active {
+            color: var(--primary);
+            background: #f8fafc;
+        }
+
+        .edit-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .edit-tab:hover:not(.active) {
+            background: #f8fafc;
+            color: var(--dark);
+        }
+
+        .edit-content {
+            background: white;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            min-height: 500px;
+        }
+
+        .edit-panel {
+            display: none;
+        }
+
+        .edit-panel.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .edit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .edit-item {
+            background: #f8fafc;
+            border-radius: var(--border-radius);
+            padding: 20px;
+            border: 1px solid var(--gray);
+        }
+
+        .edit-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .edit-item-title {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .edit-preview {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            border: 1px solid var(--gray);
+        }
+
+        .color-picker {
+            width: 40px;
+            height: 40px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: transparent;
+            padding: 0;
+        }
+
+        .color-picker::-webkit-color-swatch-wrapper {
+            padding: 0;
+        }
+
+        .color-picker::-webkit-color-swatch {
+            border: 2px solid var(--gray);
+            border-radius: 6px;
+        }
+
+        .image-upload-container {
+            border: 2px dashed var(--gray);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .image-upload-container:hover {
+            border-color: var(--primary);
+            background: #f8fafc;
+        }
+
+        .image-upload-container i {
+            font-size: 3rem;
+            color: var(--gray-dark);
+            margin-bottom: 15px;
+        }
+
+        .current-image {
+            width: 100%;
+            max-height: 200px;
+            object-fit: contain;
+            margin-top: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--gray);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: white;
+            font-weight: 700;
+        }
+
+        .footer-col h3 span {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .footer-col p, .footer-col a {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 15px;
+            display: block;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-col a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .social-icons a {
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icons a:hover {
+            background: var(--gradient);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+
+        /* Page Transitions */
+        .page {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-container, .cart-container, .checkout-container, .product-details-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-content {
+                text-align: center;
+            }
+            
+            .admin-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .admin-sidebar {
+                margin-bottom: 30px;
+            }
+            
+            .edit-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2.2rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .auth-card {
+                padding: 30px;
+            }
+
+            .admin-table {
+                display: block;
+                overflow-x: auto;
+            }
+            
+            .edit-tabs {
+                flex-wrap: wrap;
+            }
+            
+            .edit-tab {
+                flex: 1;
+                min-width: 120px;
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .btn {
+                padding: 12px 20px;
+                font-size: 0.9rem;
+            }
+            
+            .edit-tab {
+                padding: 12px 15px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Hidden Class */
+        .hidden {
+            display: none;
+        }
+
+        /* Terms checkbox */
+        .terms-checkbox {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .terms-checkbox input[type="checkbox"] {
+            width: auto;
+            margin-top: 5px;
+        }
+
+        .terms-checkbox label {
+            font-size: 0.9rem;
+            margin: 0;
+        }
+
+        .terms-checkbox a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .terms-checkbox a:hover {
+            text-decoration: underline;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 30px;
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: var(--shadow-lg);
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--gray-dark);
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            color: var(--dark);
+        }
+
+        /* Price display */
+        .price-pkr {
+            font-size: 0.9rem;
+            color: var(--gray-dark);
+            margin-left: 5px;
+        }
+
+        /* Order tracking link */
+        .track-order-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 20px;
+            transition: var(--transition);
+        }
+
+        .track-order-link:hover {
+            color: var(--primary-dark);
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo" onclick="showPage('home'); return false;">
+                <i class="fas fa-store"></i> <span>Bazaar</span>
+            </a>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active" onclick="showPage('home'); return false;">Home</a></li>
+                    <li><a href="#" onclick="showPage('products'); return false;">Products</a></li>
+                    <li><a href="#" onclick="showPage('cart'); updateCartCount(); return false;">
+                        <span class="cart-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="cart-count">0</span>
+                        </span>
+                    </a></li>
+                    <li><a href="#" onclick="showPage('my-orders'); return false;">
+                        <i class="fas fa-box"></i> My Orders
+                    </a></li>
+                    <li><a href="#" onclick="checkAdminLogin(); return false;">Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Home Page -->
+    <section id="home" class="page active">
+        <div class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <h1 id="hero-title">Welcome to <span>Bazaar</span> - Your Ultimate Shopping Destination</h1>
+                    <p id="hero-description">Discover premium products, exclusive deals, and a seamless shopping experience. From electronics to fashion, we have everything you need at competitive prices.</p>
+                    <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                        <a href="#" class="btn" onclick="showPage('products'); return false;">
+                            <i class="fas fa-shopping-bag"></i> <span id="shop-now-text">Shop Now</span>
+                        </a>
+                        <a href="#" class="btn btn-outline" onclick="showPage('my-orders'); return false;">
+                            <i class="fas fa-box"></i> <span id="my-orders-text">My Orders</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img id="hero-banner" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Modern Shopping Experience">
+                </div>
+            </div>
+        </div>
+
+        <section class="products-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 id="featured-title">Featured Products</h2>
+                    <p id="featured-description">Discover our handpicked selection of premium products</p>
+                </div>
+                <div class="products-grid" id="featured-products">
+                    <!-- Featured products will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Products Page -->
+    <section id="products" class="page">
+        <div class="container products-section">
+            <div class="section-header">
+                <h2 id="all-products-title">All Products</h2>
+                <p id="all-products-description">Browse our complete collection of premium items</p>
+            </div>
+            <div class="products-grid" id="all-products-grid">
+                <!-- All products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Details Page -->
+    <section id="product-details" class="page">
+        <div class="container product-details-section">
+            <div class="product-details-container" id="product-details-container">
+                <!-- Product details will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Page -->
+    <section id="cart" class="page">
+        <div class="container cart-section">
+            <div class="section-header">
+                <h2 id="cart-title">Your Shopping Cart</h2>
+                <p id="cart-description">Review your items before checkout</p>
+            </div>
+            <div class="cart-container">
+                <div class="cart-items" id="cart-items">
+                    <div style="text-align: center; padding: 50px 20px;">
+                        <i class="fas fa-shopping-cart" style="font-size: 4rem; color: var(--gray-dark); margin-bottom: 20px;"></i>
+                        <h3 style="margin-bottom: 15px; color: var(--dark);">Your cart is empty</h3>
+                        <p style="color: var(--gray-dark); margin-bottom: 30px;">Add some products to your cart to see them here</p>
+                        <a href="#" class="btn" onclick="showPage('products'); return false;">
+                            <i class="fas fa-shopping-bag"></i> Continue Shopping
+                        </a>
+                    </div>
+                </div>
+                <div class="cart-summary">
+                    <h3 style="margin-bottom: 25px;">Order Summary</h3>
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span id="shipping">$5.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax</span>
+                        <span id="tax">$0.00</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Total</span>
+                        <span id="total">$0.00</span>
+                    </div>
+                    <button class="btn btn-secondary" style="width: 100%; margin-top: 25px; padding: 16px;" onclick="showPage('checkout')">
+                        <i class="fas fa-lock"></i> Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Checkout Page -->
+    <section id="checkout" class="page">
+        <div class="container checkout-section">
+            <div class="section-header">
+                <h2 id="checkout-title">Checkout</h2>
+                <p id="checkout-description">Complete your purchase securely</p>
+            </div>
+            <div class="checkout-container">
+                <div class="checkout-form">
+                    <h3 style="margin-bottom: 25px;">Shipping Information</h3>
+                    <form id="checkout-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="first-name">First Name</label>
+                                <input type="text" id="first-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="last-name">Last Name</label>
+                                <input type="text" id="last-name" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" required placeholder="03XX-XXXXXXX">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Complete Address</label>
+                            <textarea id="address" rows="3" required placeholder="House #, Street, Area, City"></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input type="text" id="city" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="province">Province</label>
+                                <select id="province" required>
+                                    <option value="">Select Province</option>
+                                    <option value="punjab">Punjab</option>
+                                    <option value="sindh">Sindh</option>
+                                    <option value="kpk">Khyber Pakhtunkhwa</option>
+                                    <option value="balochistan">Balochistan</option>
+                                    <option value="gilgit">Gilgit-Baltistan</option>
+                                    <option value="ajk">Azad Jammu & Kashmir</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <input type="text" id="country" value="Pakistan" readonly>
+                        </div>
+                        
+                        <h3 style="margin-top: 40px; margin-bottom: 25px;">Payment Method</h3>
+                        <div class="payment-method">
+                            <div class="payment-method-option">
+                                <input type="radio" id="cod" name="payment" value="cod" checked>
+                                <label for="cod">Cash on Delivery (COD)</label>
+                            </div>
+                            <div class="payment-info">
+                                <i class="fas fa-info-circle"></i>
+                                Pay when you receive your order. Additional delivery charges may apply.
+                            </div>
+                        </div>
+                        
+                        <div class="terms-checkbox">
+                            <input type="checkbox" id="terms" required>
+                            <label for="terms">
+                                I agree to the <a href="#" onclick="showPage('terms'); return false;">Terms & Conditions</a> and 
+                                <a href="#" onclick="showPage('privacy'); return false;">Privacy Policy</a> of Bazaar
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%; padding: 16px; margin-top: 20px;">
+                            <i class="fas fa-check-circle"></i> Confirm Order
+                        </button>
+                    </form>
+                </div>
+                <div class="order-summary">
+                    <h3 style="margin-bottom: 25px;">Order Summary</h3>
+                    <div id="checkout-items">
+                        <!-- Checkout items will be loaded dynamically -->
+                    </div>
+                    <div class="summary-row">
+                        <span>Subtotal</span>
+                        <span id="checkout-subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping</span>
+                        <span id="checkout-shipping">$5.00</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Tax</span>
+                        <span id="checkout-tax">$0.00</span>
+                    </div>
+                    <div class="summary-row summary-total">
+                        <span>Total</span>
+                        <span id="checkout-total">$0.00</span>
+                    </div>
+                    <div style="background-color: #f0f9ff; padding: 15px; border-radius: var(--border-radius); margin-top: 20px; border: 1px solid #bae6fd;">
+                        <div style="display: flex; align-items: flex-start; gap: 10px;">
+                            <i class="fas fa-truck" style="color: var(--primary); margin-top: 3px;"></i>
+                            <div>
+                                <div style="font-weight: 600; color: var(--dark); margin-bottom: 5px;">Cash on Delivery Available</div>
+                                <div style="color: var(--gray-dark); font-size: 0.9rem;">Pay when you receive your order. Delivery in 3-5 business days.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="background-color: #f0fdf4; padding: 15px; border-radius: var(--border-radius); margin-top: 15px; border: 1px solid #bbf7d0;">
+                        <div style="display: flex; align-items: flex-start; gap: 10px;">
+                            <i class="fas fa-shield-alt" style="color: var(--secondary); margin-top: 3px;"></i>
+                            <div>
+                                <div style="font-weight: 600; color: var(--dark); margin-bottom: 5px;">Order Cancellation Available</div>
+                                <div style="color: var(--gray-dark); font-size: 0.9rem;">You can cancel your order until it's shipped from our warehouse.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- My Orders Page -->
+    <section id="my-orders" class="page">
+        <div class="container my-orders-section">
+            <div class="section-header">
+                <h2 id="myorders-title">My Orders</h2>
+                <p id="myorders-description">View all your orders in one place</p>
+            </div>
+            <div class="orders-container" id="orders-container">
+                <div class="orders-empty-state" id="orders-empty-state">
+                    <i class="fas fa-box-open"></i>
+                    <h3 style="margin-bottom: 15px; color: var(--dark);">No Orders Yet</h3>
+                    <p style="color: var(--gray-dark); margin-bottom: 30px;">Your order history will appear here once you place an order.</p>
+                    <a href="#" class="btn" onclick="showPage('products'); return false;">
+                        <i class="fas fa-shopping-bag"></i> Start Shopping
+                    </a>
+                </div>
+                <div id="orders-list" class="hidden">
+                    <!-- Orders will be loaded here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Login Page -->
+    <section id="admin-login" class="page">
+        <div class="auth-section">
+            <div class="container auth-container">
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <h2 id="admin-login-title">Admin Login</h2>
+                        <p id="admin-login-description">Sign in to access the <span>Bazaar</span> admin panel</p>
+                    </div>
+                    <form class="auth-form" id="login-form">
+                        <div class="form-group">
+                            <label for="login-email">Email Address</label>
+                            <input type="email" id="login-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="login-password">Password</label>
+                            <div class="password-container">
+                                <input type="password" id="login-password" required>
+                                <button type="button" class="toggle-password" onclick="togglePassword('login-password', this)">See Password</button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%; padding: 16px;">
+                            <i class="fas fa-sign-in-alt"></i> Sign In
+                        </button>
+                    </form>
+                    <div class="auth-footer">
+                        <p>Don't have an account? <a href="#" onclick="showPage('admin-signup'); return false;">Create Account</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Signup Page -->
+    <section id="admin-signup" class="page">
+        <div class="auth-section">
+            <div class="container auth-container">
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <h2 id="admin-signup-title">Admin Sign Up</h2>
+                        <p id="admin-signup-description">Create a new admin account for <span>Bazaar</span></p>
+                    </div>
+                    <form class="auth-form" id="signup-form">
+                        <div class="form-group">
+                            <label for="signup-name">Full Name</label>
+                            <input type="text" id="signup-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-email">Email Address</label>
+                            <input type="email" id="signup-email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="signup-password">Password</label>
+                            <div class="password-container">
+                                <input type="password" id="signup-password" required>
+                                <button type="button" class="toggle-password" onclick="togglePassword('signup-password', this)">See Password</button>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-password">Confirm Password</label>
+                            <div class="password-container">
+                                <input type="password" id="confirm-password" required>
+                                <button type="button" class="toggle-password" onclick="togglePassword('confirm-password', this)">See Password</button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%; padding: 16px;">
+                            <i class="fas fa-user-plus"></i> Create Account
+                        </button>
+                    </form>
+                    <div class="auth-footer">
+                        <p>Already have an account? <a href="#" onclick="showPage('admin-login'); return false;">Sign In</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Edit Everything Page -->
+    <section id="edit-everything" class="page">
+        <div class="container edit-everything-section">
+            <div class="section-header">
+                <h2>Edit Everything</h2>
+                <p>Edit any text, images, or colors on your website</p>
+            </div>
+            
+           <div class="edit-tabs">
+    <button class="edit-tab active" onclick="showEditTab('homepage')">Homepage</button>
+    <button class="edit-tab" onclick="showEditTab('products')">Products</button>
+    <button class="edit-tab" onclick="showEditTab('navigation')">Navigation</button>
+    <button class="edit-tab" onclick="showEditTab('colors')">Colors</button>
+    <button class="edit-tab" onclick="showEditTab('footer')">Footer</button>
+    <button class="edit-tab" onclick="showEditTab('banner')">Banner</button>
+    <button class="edit-tab" onclick="showEditTab('logo')">Tab Logo</button>
+</div>
+            
+            <div class="edit-content">
+                <!-- Homepage Edit Panel -->
+                <div id="homepage-panel" class="edit-panel active">
+                    <h3>Homepage Content</h3>
+                    <div class="edit-grid">
+                        <div class="edit-item">
+                            <div class="edit-item-header">
+                                <div class="edit-item-title">Hero Title</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="edit-hero-title" class="form-control" placeholder="Enter hero title">
+                            </div>
+                            <div class="edit-preview">
+                                <strong>Preview:</strong>
+                                <div id="hero-title-preview"></div>
+                            </div>
+                            <button class="btn btn-small" onclick="updateHeroTitle()" style="margin-top: 10px;">
+                                <i class="fas fa-save"></i> Save Title
+                            </button>
+                        </div>
+                        
+                        <div class="edit-item">
+                            <div class="edit-item-header">
+                                <div class="edit-item-title">Hero Description</div>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="edit-hero-description" class="form-control" rows="3" placeholder="Enter hero description"></textarea>
+                            </div>
+                            <div class="edit-preview">
+                                <strong>Preview:</strong>
+                                <div id="hero-description-preview"></div>
+                            </div>
+                            <button class="btn btn-small" onclick="updateHeroDescription()" style="margin-top: 10px;">
+                                <i class="fas fa-save"></i> Save Description
+                            </button>
+                        </div>
+                        
+                        <div class="edit-item">
+                            <div class="edit-item-header">
+                                <div class="edit-item-title">Featured Products Title</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="edit-featured-title" class="form-control" placeholder="Enter featured products title">
+                            </div>
+                            <button class="btn btn-small" onclick="updateFeaturedTitle()" style="margin-top: 10px;">
+                                <i class="fas fa-save"></i> Save Title
+                            </button>
+                        </div>
+                        
+                        <div class="edit-item">
+                            <div class="edit-item-header">
+                                <div class="edit-item-title">Featured Products Description</div>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="edit-featured-description" class="form-control" rows="2" placeholder="Enter featured products description"></textarea>
+                            </div>
+                            <button class="btn btn-small" onclick="updateFeaturedDescription()" style="margin-top: 10px;">
+                                <i class="fas fa-save"></i> Save Description
+                            </button>
+                        </div>
+                        
+                        <div class="edit-item">
+                            <div class="edit-item-header">
+                                <div class="edit-item-title">Button Texts</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Shop Now Text</label>
+                                <input type="text" id="edit-shop-now-text" class="form-control" placeholder="Enter Shop Now text">
+                            </div>
+                            <div class="form-group">
+                                <label>My Orders Text</label>
+                                <input type="text" id="edit-my-orders-text" class="form-control" placeholder="Enter My Orders text">
+                            </div>
+                            <button class="btn btn-small" onclick="updateButtonTexts()" style="margin-top: 10px;">
+                                <i class="fas fa-save"></i> Save Button Texts
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Products Edit Panel -->
+                <div id="products-panel" class="edit-panel">
+                    <h3>Products Page Content</h3>
+                    <div class="edit-grid">
+                        <div class="edit-item">
+                            <div class="edit-item-header">
+                                <div class="edit-item-title">All Products Title</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="edit-all-products-title" class="form-control" placeholder="Enter all products title">
+                            </div>
+                            <button class="btn btn-small" onclick="updateAllProductsTitle()" style="margin-top: 10px;">
+                                <i class="fas fa-save"></i> Save Title
+                            </button>
+                        </div>
+                        
+                        <div class="edit-item">
+                            <div class="edit-item-header">
+                                <div class="edit-item-title">All Products Description</div>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="edit-all-products-description" class="form-control" rows="2" placeholder="Enter all products description"></textarea>
+                            </div>
+                            <button class="btn btn-small" onclick="updateAllProductsDescription()" style="margin-top: 10px;">
+                                <i class="fas fa-save"></i> Save Description
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Navigation Edit Panel -->
+                <div id="navigation-panel" class="edit-panel">
+                    <h3>Navigation Items</h3>
+                    <div class="edit-grid">
+                        <div class="edit-item">
+                            <div class="edit-item-header">
+                                <div class="edit-item-title">Navigation Links</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Home Text</label>
+                                <input type="text" id="edit-nav-home" class="form-control" placeholder="Home text">
+                            </div>
+                            <div class="form-group">
+                                <label>Products Text</label>
+                                <input type="text" id="edit-nav-products" class="form-control" placeholder="Products text">
+                            </div>
+                            <div class="form-group">
+                                <label>Cart Text</label>
+                                <input type="text" id="edit-nav-cart" class="form-control" placeholder="Cart text">
+                            </div>
+                            <div class="form-group">
+                                <label>My Orders Text</label>
+                                <input type="text" id="edit-nav-orders" class="form-control" placeholder="My Orders text">
+                            </div>
+                            <div class="form-group">
+                                <label>Admin Text</label>
+                                <input type="text" id="edit-nav-admin" class="form-control" placeholder="Admin text">
+                            </div>
+                            <button class="btn btn-small" onclick="updateNavigation()" style="margin-top: 10px;">
+                                <i class="fas fa-save"></i> Save Navigation
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Colors Edit Panel -->
+                <div id="colors-panel" class="edit-panel">
+                    <h3>Website Colors</h3>
+                    <div class="edit-grid">
+                        <div class="edit-item">
+                            <div class="edit-item-header">
+                                <div class="edit-item-title">Primary Color</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="color" id="edit-primary-color" class="color-picker" value="#2563eb">
+                            </div>
+                            <button class="btn btn-small" onclick="updatePrimaryColor()" style="margin-top: 10px;">
+                                <i class="fas fa-save"></i> Save Primary Color
+                            </button>
+                        </div>
+                        
+                        <div class="edit-item">
+                            <div class="edit-item-header">
+                                <div class="edit-item-title">Secondary Color</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="color" id="edit-secondary-color" class="color-picker" value="#10b981">
+                            </div>
+                            <button class="btn btn-small" onclick="updateSecondaryColor()" style="margin-top: 10px;">
+                                <i class="fas fa-save"></i> Save Secondary Color
+                            </button>
+                        </div>
+                        
+                        <div class="edit-item">
+                            <div class="edit-item-header">
+                                <div class="edit-item-title">Dark Color</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="color" id="edit-dark-color" class="color-picker" value="#0f172a">
+                            </div>
+                            <button class="btn btn-small" onclick="updateDarkColor()" style="margin-top: 10px;">
+                                <i class="fas fa-save"></i> Save Dark Color
+                            </button>
+                        </div>
+                        
+                        <div class="edit-item">
+                            <div class="edit-item-header">
+                                <div class="edit-item-title">Accent Color</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="color" id="edit-accent-color" class="color-picker" value="#8b5cf6">
+                            </div>
+                            <button class="btn btn-small" onclick="updateAccentColor()" style="margin-top: 10px;">
+                                <i class="fas fa-save"></i> Save Accent Color
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Footer Edit Panel -->
+                <div id="footer-panel" class="edit-panel">
+                    <h3>Footer Content</h3>
+                    <div class="edit-grid">
+                        <div class="edit-item">
+                            <div class="edit-item-header">
+                                <div class="edit-item-title">Footer Description</div>
+                            </div>
+                            <div class="form-group">
+                                <textarea id="edit-footer-description" class="form-control" rows="3" placeholder="Enter footer description"></textarea>
+                            </div>
+                            <button class="btn btn-small" onclick="updateFooterDescription()" style="margin-top: 10px;">
+                                <i class="fas fa-save"></i> Save Description
+                            </button>
+                        </div>
+                        
+                        <div class="edit-item">
+                            <div class="edit-item-header">
+                                <div class="edit-item-title">Contact Information</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Address</label>
+                                <input type="text" id="edit-footer-address" class="form-control" placeholder="Enter address">
+                            </div>
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input type="text" id="edit-footer-phone" class="form-control" placeholder="Enter phone number">
+                            </div>
+                            <div class="form-group">
+                                <label>Email</label>
+                                <input type="text" id="edit-footer-email" class="form-control" placeholder="Enter email">
+                            </div>
+                            <button class="btn btn-small" onclick="updateFooterContact()" style="margin-top: 10px;">
+                                <i class="fas fa-save"></i> Save Contact Info
+                            </button>
+                        </div>
+                        
+                        <div class="edit-item">
+                            <div class="edit-item-header">
+                                <div class="edit-item-title">Copyright Text</div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="edit-copyright-text" class="form-control" placeholder="Enter copyright text">
+                            </div>
+                            <button class="btn btn-small" onclick="updateCopyrightText()" style="margin-top: 10px;">
+                                <i class="fas fa-save"></i> Save Copyright
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Banner Edit Panel -->
+                <div id="banner-panel" class="edit-panel">
+                    <h3>Website Banner</h3>
+                    <div class="edit-grid">
+                        <div class="edit-item">
+                            <div class="edit-item-header">
+                                <div class="edit-item-title">Hero Banner Image</div>
+                            </div>
+                            <div class="form-group">
+                                <div class="image-upload-container" onclick="document.getElementById('banner-image-upload').click()">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <p>Click to upload new banner image</p>
+                                    <small>Recommended size: 1200x800px</small>
+                                    <input type="file" id="banner-image-upload" accept="image/*" style="display: none;" onchange="handleBannerImageUpload(event)">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Or enter image URL:</label>
+                                <input type="text" id="edit-banner-url" class="form-control" placeholder="https://example.com/image.jpg">
+                            </div>
+                            <div class="current-image-container">
+                                <strong>Current Banner:</strong>
+                                <img id="current-banner-preview" class="current-image" src="" alt="Current Banner">
+                            </div>
+                            <button class="btn btn-small" onclick="updateBannerImage()" style="margin-top: 10px;">
+                                <i class="fas fa-save"></i> Save Banner Image
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Logo Edit Panel -->
+<div id="logo-panel" class="edit-panel">
+    <h3>Tab Logo (Favicon)</h3>
+    <p style="margin-bottom: 20px; color: var(--gray-dark);">
+        Change the icon that appears in browser tabs. Recommended format: PNG, ICO or SVG. Size: 32x32px to 192x192px.
+    </p>
+    <div class="edit-grid">
+        <div class="edit-item">
+            <div class="edit-item-header">
+                <div class="edit-item-title">Current Tab Logo</div>
+            </div>
+            <div class="form-group">
+                <div class="image-upload-container" onclick="document.getElementById('logo-image-upload').click()">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <p>Click to upload new tab logo</p>
+                    <small>Recommended: 32x32px to 192x192px (PNG, ICO, SVG)</small>
+                    <input type="file" id="logo-image-upload" accept="image/*" style="display: none;" onchange="handleLogoImageUpload(event)">
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Or enter image URL:</label>
+                <input type="text" id="edit-logo-url" class="form-control" placeholder="https://example.com/logo.png">
+            </div>
+            <div class="current-image-container">
+                <strong>Current Logo Preview:</strong>
+                <div style="display: flex; align-items: center; gap: 20px; margin-top: 10px;">
+                    <div style="text-align: center;">
+                        <div style="width: 64px; height: 64px; background: #f1f5f9; border-radius: 8px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--gray);">
+                            <img id="current-logo-preview" src="" alt="Current Logo" style="max-width: 48px; max-height: 48px;">
+                        </div>
+                        <small>Tab Preview</small>
+                    </div>
+                    <div style="flex: 1;">
+                        <p style="margin: 5px 0; font-size: 0.9rem; color: var(--gray-dark);">
+                            <strong>Current Logo URL:</strong>
+                            <span id="current-logo-url" style="word-break: break-all; display: block; margin-top: 5px;"></span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-small" onclick="updateTabLogo()" style="margin-top: 10px;">
+                <i class="fas fa-save"></i> Save Tab Logo
+            </button>
+        </div>
+        
+        <div class="edit-item">
+            <div class="edit-item-header">
+                <div class="edit-item-title">Logo Preview</div>
+            </div>
+            <div class="edit-preview" style="background: white; padding: 20px; border-radius: var(--border-radius);">
+                <h4 style="margin-bottom: 15px;">How it will appear:</h4>
+                <div style="background: #1e293b; color: white; padding: 10px 15px; border-radius: 8px; display: inline-flex; align-items: center; gap: 10px;">
+                    <img id="logo-preview-icon" src="" alt="Logo" style="width: 24px; height: 24px;">
+                    <span>Bazaar | Modern E-commerce Platform</span>
+                </div>
+                <p style="margin-top: 15px; font-size: 0.9rem; color: var(--gray-dark);">
+                    This is how your logo will appear in browser tabs and bookmarks.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+    <!-- Admin Panel -->
+    <section id="admin-panel" class="page">
+        <div class="container admin-section">
+            <div class="admin-container">
+                <div class="admin-sidebar">
+                    <h3><i class="fas fa-cog"></i> Bazaar Admin</h3>
+                    <ul class="admin-menu">
+                        <li><a href="#" class="active" onclick="showAdminSection('dashboard'); return false;">
+                            <i class="fas fa-tachometer-alt"></i> Dashboard
+                        </a></li>
+                        <li><a href="#" onclick="showAdminSection('products-management'); return false;">
+                            <i class="fas fa-box"></i> Products
+                        </a></li>
+                        <li><a href="#" onclick="showAdminSection('orders'); return false;">
+                            <i class="fas fa-shopping-cart"></i> Orders
+                        </a></li>
+                        <li><a href="#" onclick="showAdminSection('editor'); return false;">
+                            <i class="fas fa-edit"></i> Content Editor
+                        </a></li>
+                        <li><a href="#" onclick="showPage('edit-everything'); return false;">
+                            <i class="fas fa-pencil-alt"></i> Edit Everything
+                        </a></li>
+                        <li><a href="#" onclick="logoutAdmin(); return false;">
+                            <i class="fas fa-sign-out-alt"></i> Logout
+                        </a></li>
+                    </ul>
+                </div>
+                <div class="admin-content">
+                    <!-- Dashboard Section -->
+                    <div id="dashboard-section" class="admin-section-content">
+                        <div class="admin-header">
+                            <h2>Dashboard Overview</h2>
+                            <span>Welcome to <span style="color: var(--primary); font-weight: 700;">Bazaar</span> Admin Panel</span>
+                        </div>
+                        <div class="stats-cards">
+                            <div class="stat-card">
+                                <h3 id="total-orders">0</h3>
+                                <p>Total Orders</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3 id="total-products">0</h3>
+                                <p>Total Products</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3 id="pending-orders">0</h3>
+                                <p>Pending Orders</p>
+                            </div>
+                            <div class="stat-card">
+                                <h3 id="total-revenue">$0</h3>
+                                <p>Total Revenue</p>
+                            </div>
+                        </div>
+                        <h3 style="margin-bottom: 20px;">Recent Orders</h3>
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-orders">
+                                <!-- Recent orders will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Products Management Section -->
+                    <div id="products-management-section" class="admin-section-content hidden">
+                        <div class="admin-header">
+                            <h2>Product Management</h2>
+                            <button class="btn btn-small" onclick="showAddProductForm()">
+                                <i class="fas fa-plus"></i> Add New Product
+                            </button>
+                        </div>
+                        
+                        <!-- Add/Edit Product Form -->
+                        <div id="product-form-container" class="hidden">
+                            <h3 id="form-title" style="margin-bottom: 25px;">Add New Product</h3>
+                            <form id="product-form">
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="product-name">Product Name</label>
+                                        <input type="text" id="product-name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="product-price">Price ($)</label>
+                                        <input type="number" id="product-price" step="0.01" min="0" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="product-description">Description</label>
+                                    <textarea id="product-description" rows="4" required></textarea>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="product-category">Category</label>
+                                        <select id="product-category" required>
+                                            <option value="electronics">Electronics</option>
+                                            <option value="clothing">Clothing</option>
+                                            <option value="accessories">Accessories</option>
+                                            <option value="home">Home & Living</option>
+                                            <option value="sports">Sports & Outdoors</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="product-stock">Stock Quantity</label>
+                                        <input type="number" id="product-stock" min="0" required>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="product-image">Image URL</label>
+                                    <input type="text" id="product-image" placeholder="https://example.com/image.jpg" required>
+                                    <small style="color: var(--gray-dark); margin-top: 5px; display: block;">Use high-quality product images for best results</small>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn">
+                                        <i class="fas fa-save"></i> Save Product
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" onclick="hideProductForm()">
+                                        <i class="fas fa-times"></i> Cancel
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Products List -->
+                        <h3 style="margin-bottom: 20px;">All Products</h3>
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Product</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Stock</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-products-list">
+                                <!-- Products will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Orders Section -->
+                    <div id="orders-section" class="admin-section-content hidden">
+                        <div class="admin-header">
+                            <h2>Order Management</h2>
+                        </div>
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Order ID</th>
+                                    <th>Customer</th>
+                                    <th>Products</th>
+                                    <th>Date</th>
+                                    <th>Total</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-orders-list">
+                                <!-- Orders will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Editor Section -->
+                    <div id="editor-section" class="admin-section-content hidden">
+                        <div class="admin-header">
+                            <h2>Content Editor</h2>
+                            <p>Create and edit pages, banners, and content</p>
+                        </div>
+                        
+                        <div class="editor-container">
+                            <h3 style="margin-bottom: 20px;">Page Editor</h3>
+                            
+                            <div class="form-group">
+                                <label for="editor-page-select">Select Page to Edit</label>
+                                <select id="editor-page-select" onchange="loadPageContent()">
+                                    <option value="">Select a page...</option>
+                                    <option value="home">Home Page</option>
+                                    <option value="about">About Us</option>
+                                    <option value="terms">Terms & Conditions</option>
+                                    <option value="privacy">Privacy Policy</option>
+                                    <option value="faq">FAQ</option>
+                                    <option value="contact">Contact Us</option>
+                                    <option value="new">Create New Page</option>
+                                </select>
+                            </div>
+                            
+                            <div id="editor-content" class="hidden">
+                                <div class="form-group">
+                                    <label for="editor-title">Page Title</label>
+                                    <input type="text" id="editor-title" placeholder="Enter page title">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="editor-url">Page URL</label>
+                                    <input type="text" id="editor-url" placeholder="page-url" readonly>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Content Editor</label>
+                                    <div id="quill-editor" class="quill-editor"></div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>Media Gallery</label>
+                                    <div class="upload-area" onclick="document.getElementById('media-upload').click()">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p>Click to upload images or drag and drop</p>
+                                        <small>Supports JPG, PNG, GIF, MP4, WEBM up to 10MB</small>
+                                        <input type="file" id="media-upload" multiple accept="image/*,video/*" style="display: none;" onchange="handleMediaUpload(event)">
+                                    </div>
+                                    
+                                    <div class="media-gallery" id="media-gallery">
+                                        <!-- Media items will appear here -->
+                                    </div>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="editor-seo-title">SEO Title</label>
+                                    <input type="text" id="editor-seo-title" placeholder="SEO title for search engines">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="editor-seo-description">SEO Description</label>
+                                    <textarea id="editor-seo-description" rows="3" placeholder="SEO description for search engines"></textarea>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="editor-seo-keywords">SEO Keywords</label>
+                                    <input type="text" id="editor-seo-keywords" placeholder="comma, separated, keywords">
+                                </div>
+                                
+                                <div class="form-actions">
+                                    <button class="btn" onclick="savePageContent()">
+                                        <i class="fas fa-save"></i> Save Page
+                                    </button>
+                                    <button class="btn btn-secondary" onclick="previewPage()">
+                                        <i class="fas fa-eye"></i> Preview
+                                    </button>
+                                    <button class="btn btn-outline" onclick="resetEditor()">
+                                        <i class="fas fa-redo"></i> Reset
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div class="footer-col">
+                <h3><span>Bazaar</span></h3>
+                <p id="footer-description">Your ultimate destination for premium shopping experience. Quality products, competitive prices, and exceptional service.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <a href="#" onclick="showPage('home'); return false;">Home</a>
+                <a href="#" onclick="showPage('products'); return false;">All Products</a>
+                <a href="#" onclick="showPage('cart'); updateCartCount(); return false;">Shopping Cart</a>
+                <a href="#" onclick="showPage('my-orders'); return false;">My Orders</a>
+                <a href="#" onclick="showPage('terms'); return false;">Terms & Conditions</a>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p id="footer-address"><i class="fas fa-map-marker-alt"></i> 123 Commerce Street, Business City, Pakistan</p>
+                <p id="footer-phone"><i class="fas fa-phone"></i> +92 300 1234567</p>
+                <p id="footer-email"><i class="fas fa-envelope"></i> support@bazaar.pk</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p id="copyright-text">&copy; 2023 <span style="color: var(--primary-light);">Bazaar</span>. All rights reserved. | Serving Pakistan Nationwide | Prices in PKR</p>
+        </div>
+    </footer>
+
+    <!-- Include Quill Editor JS -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    
+    <script>
+        // Website Content Storage
+        let websiteContent = JSON.parse(localStorage.getItem('bazaar_website_content')) || {
+            hero: {
+                title: "Welcome to <span>Bazaar</span> - Your Ultimate Shopping Destination",
+                description: "Discover premium products, exclusive deals, and a seamless shopping experience. From electronics to fashion, we have everything you need at competitive prices.",
+                shopNowText: "Shop Now",
+                myOrdersText: "My Orders",
+                bannerImage: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80"
+            },
+            featured: {
+                title: "Featured Products",
+                description: "Discover our handpicked selection of premium products"
+            },
+            products: {
+                title: "All Products",
+                description: "Browse our complete collection of premium items"
+            },
+            cart: {
+                title: "Your Shopping Cart",
+                description: "Review your items before checkout"
+            },
+            checkout: {
+                title: "Checkout",
+                description: "Complete your purchase securely"
+            },
+            myOrders: {
+                title: "My Orders",
+                description: "View all your orders in one place"
+            },
+            adminLogin: {
+                title: "Admin Login",
+                description: "Sign in to access the <span>Bazaar</span> admin panel"
+            },
+            adminSignup: {
+                title: "Admin Sign Up",
+                description: "Create a new admin account for <span>Bazaar</span>"
+            },
+            navigation: {
+                home: "Home",
+                products: "Products",
+                cart: "Cart",
+                orders: "My Orders",
+                admin: "Admin"
+            },
+            footer: {
+                description: "Your ultimate destination for premium shopping experience. Quality products, competitive prices, and exceptional service.",
+                address: "123 Commerce Street, Business City, Pakistan",
+                phone: "+92 300 1234567",
+                email: "support@bazaar.pk",
+                copyright: "&copy; 2023 <span style=\"color: var(--primary-light);\">Bazaar</span>. All rights reserved. | Serving Pakistan Nationwide | Prices in PKR"
+            },
+                colors: {
+        primary: "#2563eb",
+        secondary: "#10b981",
+        dark: "#0f172a",
+        accent: "#8b5cf6"
+    },
+    // ADD THIS LOGO PROPERTY
+    logo: {
+        favicon: ""
+    }
+        };
+
+        // Data Storage
+        let products = [
+            {
+                id: 1,
+                name: "Wireless Bluetooth Headphones",
+                price: 89.99,
+                description: "Premium noise-cancelling wireless headphones with 30-hour battery life and crystal clear audio quality.",
+                category: "electronics",
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                stock: 45,
+                rating: 4.7,
+                discount: 15
+            },
+            {
+                id: 2,
+                name: "Men's Premium Watch",
+                price: 149.99,
+                description: "Elegant stainless steel watch with leather strap, water resistant up to 50 meters.",
+                category: "accessories",
+                image: "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                stock: 28,
+                rating: 4.8,
+                discount: 10
+            },
+            {
+                id: 3,
+                name: "Premium Backpack",
+                price: 65.50,
+                description: "Durable water-resistant backpack with laptop compartment and multiple pockets for organization.",
+                category: "accessories",
+                image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                stock: 35,
+                rating: 4.5,
+                discount: 0
+            },
+            {
+                id: 4,
+                name: "Smartphone Stand",
+                price: 24.99,
+                description: "Adjustable aluminum smartphone stand with anti-slip base, compatible with all smartphones.",
+                category: "electronics",
+                image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                stock: 60,
+                rating: 4.3,
+                discount: 5
+            },
+            {
+                id: 5,
+                name: "Men's Casual Shirt",
+                price: 45.99,
+                description: "Comfortable cotton casual shirt with modern fit, perfect for everyday wear.",
+                category: "clothing",
+                image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                stock: 40,
+                rating: 4.6,
+                discount: 20
+            },
+            {
+                id: 6,
+                name: "Coffee Maker",
+                price: 129.99,
+                description: "Programmable coffee maker with thermal carafe and built-in grinder for fresh coffee.",
+                category: "home",
+                image: "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                stock: 25,
+                rating: 4.9,
+                discount: 15
+            },
+            {
+                id: 7,
+                name: "Running Shoes",
+                price: 79.99,
+                description: "Lightweight running shoes with cushioning technology for maximum comfort during workouts.",
+                category: "sports",
+                image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                stock: 32,
+                rating: 4.7,
+                discount: 25
+            },
+            {
+                id: 8,
+                name: "Portable Speaker",
+                price: 59.99,
+                description: "Compact portable Bluetooth speaker with 12-hour battery life and waterproof design.",
+                category: "electronics",
+                image: "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80",
+                stock: 50,
+                rating: 4.4,
+                discount: 10
+            }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('bazaar_cart')) || [];
+        let orders = JSON.parse(localStorage.getItem('bazaar_orders')) || [];
+        let adminUsers = JSON.parse(localStorage.getItem('bazaar_admin_users')) || [
+            { email: "admin@bazaar.com", password: "admin123", name: "Admin" }
+        ];
+        
+        // Current user session
+        let currentUser = JSON.parse(localStorage.getItem('bazaar_current_user')) || null;
+        let currentAdmin = JSON.parse(localStorage.getItem('bazaar_current_admin')) || null;
+        
+        // Page content storage
+        let pageContent = JSON.parse(localStorage.getItem('bazaar_page_content')) || {
+            home: { title: "Home", content: "<h1>Welcome to Bazaar</h1><p>Your ultimate shopping destination in Pakistan.</p>" },
+            about: { title: "About Us", content: "<h1>About Bazaar</h1><p>We are Pakistan's premier e-commerce platform.</p>" },
+            terms: { title: "Terms & Conditions", content: "<h1>Terms & Conditions</h1><p>Please read these terms carefully before using our service.</p>" },
+            privacy: { title: "Privacy Policy", content: "<h1>Privacy Policy</h1><p>Your privacy is important to us.</p>" },
+            faq: { title: "FAQ", content: "<h1>Frequently Asked Questions</h1><p>Find answers to common questions.</p>" },
+            contact: { title: "Contact Us", content: "<h1>Contact Us</h1><p>Get in touch with our team.</p>" }
+        };
+        
+        // Media storage
+        let mediaLibrary = JSON.parse(localStorage.getItem('bazaar_media_library')) || [];
+        
+        // Initialize products in localStorage if not present
+        if (!localStorage.getItem('bazaar_products')) {
+            localStorage.setItem('bazaar_products', JSON.stringify(products));
+        } else {
+            products = JSON.parse(localStorage.getItem('bazaar_products'));
+        }
+        
+        // Quill Editor Instance
+        let quill = null;
+
+        // Initialize website content
+        function initializeWebsiteContent() {
+            // Load hero content
+            document.getElementById('hero-title').innerHTML = websiteContent.hero.title;
+            document.getElementById('hero-description').textContent = websiteContent.hero.description;
+            document.getElementById('shop-now-text').textContent = websiteContent.hero.shopNowText;
+            document.getElementById('my-orders-text').textContent = websiteContent.hero.myOrdersText;
+            document.getElementById('hero-banner').src = websiteContent.hero.bannerImage;
+            
+            // Load featured content
+            document.getElementById('featured-title').textContent = websiteContent.featured.title;
+            document.getElementById('featured-description').textContent = websiteContent.featured.description;
+            
+            // Load products content
+            document.getElementById('all-products-title').textContent = websiteContent.products.title;
+            document.getElementById('all-products-description').textContent = websiteContent.products.description;
+            
+            // Load cart content
+            document.getElementById('cart-title').textContent = websiteContent.cart.title;
+            document.getElementById('cart-description').textContent = websiteContent.cart.description;
+            
+            // Load checkout content
+            document.getElementById('checkout-title').textContent = websiteContent.checkout.title;
+            document.getElementById('checkout-description').textContent = websiteContent.checkout.description;
+            
+            // Load my orders content
+            document.getElementById('myorders-title').textContent = websiteContent.myOrders.title;
+            document.getElementById('myorders-description').textContent = websiteContent.myOrders.description;
+            
+            // Load admin login content
+            document.getElementById('admin-login-title').textContent = websiteContent.adminLogin.title;
+            document.getElementById('admin-login-description').innerHTML = websiteContent.adminLogin.description;
+            
+            // Load admin signup content
+            document.getElementById('admin-signup-title').textContent = websiteContent.adminSignup.title;
+            document.getElementById('admin-signup-description').innerHTML = websiteContent.adminSignup.description;
+            
+            // Load navigation
+            document.querySelectorAll('nav a')[0].textContent = websiteContent.navigation.home;
+            document.querySelectorAll('nav a')[1].textContent = websiteContent.navigation.products;
+            document.querySelectorAll('nav a')[2].innerHTML = '<span class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></span> ' + websiteContent.navigation.cart;
+            document.querySelectorAll('nav a')[3].innerHTML = '<i class="fas fa-box"></i> ' + websiteContent.navigation.orders;
+            document.querySelectorAll('nav a')[4].innerHTML = '<i class="fas fa-user-shield"></i> ' + websiteContent.navigation.admin;
+            
+            // Load footer
+            document.getElementById('footer-description').textContent = websiteContent.footer.description;
+            document.getElementById('footer-address').innerHTML = '<i class="fas fa-map-marker-alt"></i> ' + websiteContent.footer.address;
+            document.getElementById('footer-phone').innerHTML = '<i class="fas fa-phone"></i> ' + websiteContent.footer.phone;
+            document.getElementById('footer-email').innerHTML = '<i class="fas fa-envelope"></i> ' + websiteContent.footer.email;
+            document.getElementById('copyright-text').innerHTML = websiteContent.footer.copyright;
+            
+            // Load colors
+            updateWebsiteColors();
+            
+            // Load edit form values
+            loadEditFormValues();
+        }
+
+        // Update website colors
+        function updateWebsiteColors() {
+            const root = document.documentElement;
+            root.style.setProperty('--primary', websiteContent.colors.primary);
+            root.style.setProperty('--primary-dark', darkenColor(websiteContent.colors.primary, 20));
+            root.style.setProperty('--primary-light', lightenColor(websiteContent.colors.primary, 20));
+            root.style.setProperty('--secondary', websiteContent.colors.secondary);
+            root.style.setProperty('--secondary-dark', darkenColor(websiteContent.colors.secondary, 20));
+            root.style.setProperty('--dark', websiteContent.colors.dark);
+            root.style.setProperty('--accent', websiteContent.colors.accent);
+            
+            // Update gradient
+            root.style.setProperty('--gradient', `linear-gradient(135deg, ${websiteContent.colors.primary} 0%, ${websiteContent.colors.accent} 100%)`);
+        }
+
+        // Color utility functions
+        function darkenColor(color, percent) {
+            const num = parseInt(color.replace("#", ""), 16);
+            const amt = Math.round(2.55 * percent);
+            const R = (num >> 16) - amt;
+            const G = (num >> 8 & 0x00FF) - amt;
+            const B = (num & 0x0000FF) - amt;
+            return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+                (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+                (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+        }
+
+        function lightenColor(color, percent) {
+            const num = parseInt(color.replace("#", ""), 16);
+            const amt = Math.round(2.55 * percent);
+            const R = (num >> 16) + amt;
+            const G = (num >> 8 & 0x00FF) + amt;
+            const B = (num & 0x0000FF) + amt;
+            return "#" + (0x1000000 + (R > 255 ? 255 : R) * 0x10000 +
+                (G > 255 ? 255 : G) * 0x100 +
+                (B > 255 ? 255 : B)).toString(16).slice(1);
+        }
+
+        // Load edit form values
+        function loadEditFormValues() {
+            // Homepage
+            document.getElementById('edit-hero-title').value = websiteContent.hero.title.replace(/<span>|<\/span>/g, '');
+            document.getElementById('edit-hero-description').value = websiteContent.hero.description;
+            document.getElementById('edit-featured-title').value = websiteContent.featured.title;
+            document.getElementById('edit-featured-description').value = websiteContent.featured.description;
+            document.getElementById('edit-shop-now-text').value = websiteContent.hero.shopNowText;
+            document.getElementById('edit-my-orders-text').value = websiteContent.hero.myOrdersText;
+            
+            // Products
+            document.getElementById('edit-all-products-title').value = websiteContent.products.title;
+            document.getElementById('edit-all-products-description').value = websiteContent.products.description;
+            
+            // Navigation
+            document.getElementById('edit-nav-home').value = websiteContent.navigation.home;
+            document.getElementById('edit-nav-products').value = websiteContent.navigation.products;
+            document.getElementById('edit-nav-cart').value = websiteContent.navigation.cart;
+            document.getElementById('edit-nav-orders').value = websiteContent.navigation.orders;
+            document.getElementById('edit-nav-admin').value = websiteContent.navigation.admin;
+            
+            // Colors
+            document.getElementById('edit-primary-color').value = websiteContent.colors.primary;
+            document.getElementById('edit-secondary-color').value = websiteContent.colors.secondary;
+            document.getElementById('edit-dark-color').value = websiteContent.colors.dark;
+            document.getElementById('edit-accent-color').value = websiteContent.colors.accent;
+            
+            // Footer
+            document.getElementById('edit-footer-description').value = websiteContent.footer.description;
+            document.getElementById('edit-footer-address').value = websiteContent.footer.address;
+            document.getElementById('edit-footer-phone').value = websiteContent.footer.phone;
+            document.getElementById('edit-footer-email').value = websiteContent.footer.email;
+            document.getElementById('edit-copyright-text').value = websiteContent.footer.copyright.replace(/&copy; |<span.*?>|<\/span>|<\/?[^>]+(>|$)/g, '');
+            
+            // Banner
+            document.getElementById('edit-banner-url').value = websiteContent.hero.bannerImage;
+            document.getElementById('current-banner-preview').src = websiteContent.hero.bannerImage;
+            
+            // Update previews
+            updateHeroTitlePreview();
+            updateHeroDescriptionPreview();
+        }
+
+        // Update hero title preview
+        function updateHeroTitlePreview() {
+            const title = document.getElementById('edit-hero-title').value;
+            document.getElementById('hero-title-preview').innerHTML = title.replace('Bazaar', '<span>Bazaar</span>');
+        }
+
+        // Update hero description preview
+        function updateHeroDescriptionPreview() {
+            const description = document.getElementById('edit-hero-description').value;
+            document.getElementById('hero-description-preview').textContent = description;
+        }
+
+        // Edit Everything Functions
+        function showEditTab(tabName) {
+            // Hide all tabs
+            document.querySelectorAll('.edit-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab
+            document.querySelector(`.edit-tab[onclick*="${tabName}"]`).classList.add('active');
+            
+            // Hide all panels
+            document.querySelectorAll('.edit-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            
+            // Show selected panel
+            document.getElementById(`${tabName}-panel`).classList.add('active');
+        }
+
+        // Update hero title
+        function updateHeroTitle() {
+            const title = document.getElementById('edit-hero-title').value;
+            websiteContent.hero.title = title.replace('Bazaar', '<span>Bazaar</span>');
+            document.getElementById('hero-title').innerHTML = websiteContent.hero.title;
+            saveWebsiteContent();
+            showNotification('Hero title updated successfully!');
+        }
+
+        // Update hero description
+        function updateHeroDescription() {
+            const description = document.getElementById('edit-hero-description').value;
+            websiteContent.hero.description = description;
+            document.getElementById('hero-description').textContent = description;
+            saveWebsiteContent();
+            showNotification('Hero description updated successfully!');
+        }
+
+        // Update featured title
+        function updateFeaturedTitle() {
+            const title = document.getElementById('edit-featured-title').value;
+            websiteContent.featured.title = title;
+            document.getElementById('featured-title').textContent = title;
+            saveWebsiteContent();
+            showNotification('Featured products title updated successfully!');
+        }
+
+        // Update featured description
+        function updateFeaturedDescription() {
+            const description = document.getElementById('edit-featured-description').value;
+            websiteContent.featured.description = description;
+            document.getElementById('featured-description').textContent = description;
+            saveWebsiteContent();
+            showNotification('Featured products description updated successfully!');
+        }
+
+        // Update all products title
+        function updateAllProductsTitle() {
+            const title = document.getElementById('edit-all-products-title').value;
+            websiteContent.products.title = title;
+            document.getElementById('all-products-title').textContent = title;
+            saveWebsiteContent();
+            showNotification('All products title updated successfully!');
+        }
+
+        // Update all products description
+        function updateAllProductsDescription() {
+            const description = document.getElementById('edit-all-products-description').value;
+            websiteContent.products.description = description;
+            document.getElementById('all-products-description').textContent = description;
+            saveWebsiteContent();
+            showNotification('All products description updated successfully!');
+        }
+
+        // Update button texts
+        function updateButtonTexts() {
+            const shopNowText = document.getElementById('edit-shop-now-text').value;
+            const myOrdersText = document.getElementById('edit-my-orders-text').value;
+            
+            websiteContent.hero.shopNowText = shopNowText;
+            websiteContent.hero.myOrdersText = myOrdersText;
+            
+            document.getElementById('shop-now-text').textContent = shopNowText;
+            document.getElementById('my-orders-text').textContent = myOrdersText;
+            
+            saveWebsiteContent();
+            showNotification('Button texts updated successfully!');
+        }
+
+        // Update navigation
+        function updateNavigation() {
+            websiteContent.navigation.home = document.getElementById('edit-nav-home').value;
+            websiteContent.navigation.products = document.getElementById('edit-nav-products').value;
+            websiteContent.navigation.cart = document.getElementById('edit-nav-cart').value;
+            websiteContent.navigation.orders = document.getElementById('edit-nav-orders').value;
+            websiteContent.navigation.admin = document.getElementById('edit-nav-admin').value;
+            
+            // Update navigation in real-time
+            document.querySelectorAll('nav a')[0].textContent = websiteContent.navigation.home;
+            document.querySelectorAll('nav a')[1].textContent = websiteContent.navigation.products;
+            document.querySelectorAll('nav a')[2].innerHTML = '<span class="cart-icon"><i class="fas fa-shopping-cart"></i><span class="cart-count">0</span></span> ' + websiteContent.navigation.cart;
+            document.querySelectorAll('nav a')[3].innerHTML = '<i class="fas fa-box"></i> ' + websiteContent.navigation.orders;
+            document.querySelectorAll('nav a')[4].innerHTML = '<i class="fas fa-user-shield"></i> ' + websiteContent.navigation.admin;
+            
+            saveWebsiteContent();
+            showNotification('Navigation updated successfully!');
+        }
+
+        // Update primary color
+        function updatePrimaryColor() {
+            websiteContent.colors.primary = document.getElementById('edit-primary-color').value;
+            updateWebsiteColors();
+            saveWebsiteContent();
+            showNotification('Primary color updated successfully!');
+        }
+
+        // Update secondary color
+        function updateSecondaryColor() {
+            websiteContent.colors.secondary = document.getElementById('edit-secondary-color').value;
+            updateWebsiteColors();
+            saveWebsiteContent();
+            showNotification('Secondary color updated successfully!');
+        }
+
+        // Update dark color
+        function updateDarkColor() {
+            websiteContent.colors.dark = document.getElementById('edit-dark-color').value;
+            updateWebsiteColors();
+            saveWebsiteContent();
+            showNotification('Dark color updated successfully!');
+        }
+
+        // Update accent color
+        function updateAccentColor() {
+            websiteContent.colors.accent = document.getElementById('edit-accent-color').value;
+            updateWebsiteColors();
+            saveWebsiteContent();
+            showNotification('Accent color updated successfully!');
+        }
+
+        // Update footer description
+        function updateFooterDescription() {
+            const description = document.getElementById('edit-footer-description').value;
+            websiteContent.footer.description = description;
+            document.getElementById('footer-description').textContent = description;
+            saveWebsiteContent();
+            showNotification('Footer description updated successfully!');
+        }
+
+        // Update footer contact
+        function updateFooterContact() {
+            websiteContent.footer.address = document.getElementById('edit-footer-address').value;
+            websiteContent.footer.phone = document.getElementById('edit-footer-phone').value;
+            websiteContent.footer.email = document.getElementById('edit-footer-email').value;
+            
+            document.getElementById('footer-address').innerHTML = '<i class="fas fa-map-marker-alt"></i> ' + websiteContent.footer.address;
+            document.getElementById('footer-phone').innerHTML = '<i class="fas fa-phone"></i> ' + websiteContent.footer.phone;
+            document.getElementById('footer-email').innerHTML = '<i class="fas fa-envelope"></i> ' + websiteContent.footer.email;
+            
+            saveWebsiteContent();
+            showNotification('Footer contact information updated successfully!');
+        }
+
+        // Update copyright text
+        function updateCopyrightText() {
+            const text = document.getElementById('edit-copyright-text').value;
+            websiteContent.footer.copyright = `&copy; ${new Date().getFullYear()} <span style="color: var(--primary-light);">Bazaar</span>. ${text}`;
+            document.getElementById('copyright-text').innerHTML = websiteContent.footer.copyright;
+            saveWebsiteContent();
+            showNotification('Copyright text updated successfully!');
+        }
+
+        // Handle banner image upload
+        function handleBannerImageUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            
+            if (!file.type.startsWith('image/')) {
+                showNotification('Please upload an image file');
+                return;
+            }
+            
+            const maxSize = 5 * 1024 * 1024; // 5MB
+            if (file.size > maxSize) {
+                showNotification('Image is too large. Maximum size is 5MB.');
+                return;
+            }
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                document.getElementById('edit-banner-url').value = e.target.result;
+                document.getElementById('current-banner-preview').src = e.target.result;
+                showNotification('Banner image uploaded! Ready to save.');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Update banner image
+        function updateBannerImage() {
+            const bannerUrl = document.getElementById('edit-banner-url').value;
+            if (!bannerUrl) {
+                showNotification('Please enter a banner image URL');
+                return;
+            }
+            
+            websiteContent.hero.bannerImage = bannerUrl;
+            document.getElementById('hero-banner').src = bannerUrl;
+            document.getElementById('current-banner-preview').src = bannerUrl;
+            
+            saveWebsiteContent();
+            showNotification('Banner image updated successfully!');
+        }
+
+        // Save website content
+        function saveWebsiteContent() {
+            localStorage.setItem('bazaar_website_content', JSON.stringify(websiteContent));
+        }
+
+        // Check if admin is logged in
+        function checkAdminLogin() {
+            if (currentAdmin) {
+                showPage('admin-panel');
+                showAdminSection('dashboard');
+            } else {
+                showPage('admin-login');
+            }
+        }
+
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show the requested page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Update navigation active state
+            document.querySelectorAll('nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            // Update cart count
+            if (pageId !== 'admin-login' && pageId !== 'admin-signup' && pageId !== 'admin-panel' && pageId !== 'edit-everything') {
+                updateCartCount();
+            }
+            
+            // Load specific page content
+            if (pageId === 'home') {
+                loadFeaturedProducts();
+                document.querySelector('nav a[onclick*="home"]').classList.add('active');
+            } else if (pageId === 'products') {
+                loadAllProducts();
+            } else if (pageId === 'cart') {
+                loadCart();
+            } else if (pageId === 'checkout') {
+                loadCheckout();
+            } else if (pageId === 'my-orders') {
+                loadMyOrders();
+            } else if (pageId === 'edit-everything') {
+                loadEditFormValues();
+            }
+        }
+
+        // Show notification
+        function showNotification(message) {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--gradient);
+                color: white;
+                padding: 15px 25px;
+                border-radius: var(--border-radius);
+                box-shadow: var(--shadow-lg);
+                z-index: 10000;
+                animation: slideIn 0.3s ease;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            `;
+            
+            notification.innerHTML = `<i class="fas fa-check-circle"></i> ${message}`;
+            document.body.appendChild(notification);
+            
+            // Remove after 3 seconds
+            setTimeout(() => {
+                notification.style.animation = 'slideOut 0.3s ease';
+                setTimeout(() => {
+                    document.body.removeChild(notification);
+                }, 300);
+            }, 3000);
+        }
+
+        // Toggle Password Visibility
+        function togglePassword(inputId, button) {
+            const passwordInput = document.getElementById(inputId);
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                button.textContent = 'Hide Password';
+                button.style.background = 'var(--primary)';
+                button.style.color = 'white';
+            } else {
+                passwordInput.type = 'password';
+                button.textContent = 'See Password';
+                button.style.background = 'var(--gray)';
+                button.style.color = 'var(--dark)';
+            }
+        }
+
+        // Calculate discounted price
+        function calculateDiscountedPrice(price, discount) {
+            return discount > 0 ? price * (1 - discount/100) : price;
+        }
+
+        // Convert USD to PKR
+        function convertToPKR(usd) {
+            const exchangeRate = 280;
+            return Math.round(usd * exchangeRate);
+        }
+
+        // Generate Star Rating HTML
+        function generateStarRating(rating) {
+            let stars = '';
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            
+            return stars;
+        }
+
+        // Load Featured Products
+        function loadFeaturedProducts() {
+            const productsGrid = document.getElementById('featured-products');
+            productsGrid.innerHTML = '';
+            
+            const featuredProducts = products.slice(0, 4);
+            
+            featuredProducts.forEach(product => {
+                const discountedPrice = calculateDiscountedPrice(product.price, product.discount);
+                const pricePKR = convertToPKR(discountedPrice);
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-img">
+                        <img src="${product.image}" alt="${product.name}">
+                        ${product.discount > 0 ? `<div class="product-badge">${product.discount}% OFF</div>` : ''}
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-rating">
+                            ${generateStarRating(product.rating)}
+                            <span style="margin-left: 8px; color: var(--gray-dark); font-size: 0.9rem;">${product.rating}</span>
+                        </div>
+                        <div class="product-price">
+                            $${discountedPrice.toFixed(2)}
+                            <span class="price-pkr">(PKR ${pricePKR.toLocaleString()})</span>
+                            ${product.discount > 0 ? `<span class="old-price">$${product.price.toFixed(2)}</span>` : ''}
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-small" onclick="addToCart(${product.id})">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                            <button class="btn btn-secondary btn-small" onclick="showProductDetails(${product.id})">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                        </div>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        // Load All Products
+        function loadAllProducts() {
+            const productsGrid = document.getElementById('all-products-grid');
+            productsGrid.innerHTML = '';
+            
+            products.forEach(product => {
+                const discountedPrice = calculateDiscountedPrice(product.price, product.discount);
+                const pricePKR = convertToPKR(discountedPrice);
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                    <div class="product-img">
+                        <img src="${product.image}" alt="${product.name}">
+                        ${product.discount > 0 ? `<div class="product-badge">${product.discount}% OFF</div>` : ''}
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-rating">
+                            ${generateStarRating(product.rating)}
+                            <span style="margin-left: 8px; color: var(--gray-dark); font-size: 0.9rem;">${product.rating}</span>
+                        </div>
+                        <div class="product-price">
+                            $${discountedPrice.toFixed(2)}
+                            <span class="price-pkr">(PKR ${pricePKR.toLocaleString()})</span>
+                            ${product.discount > 0 ? `<span class="old-price">$${product.price.toFixed(2)}</span>` : ''}
+                        </div>
+                        <div class="product-actions">
+                            <button class="btn btn-small" onclick="addToCart(${product.id})">
+                                <i class="fas fa-cart-plus"></i> Add to Cart
+                            </button>
+                            <button class="btn btn-secondary btn-small" onclick="showProductDetails(${product.id})">
+                                <i class="fas fa-eye"></i> View
+                            </button>
+                        </div>
+                    </div>
+                `;
+                productsGrid.appendChild(productCard);
+            });
+        }
+
+        // Show Product Details
+        function showProductDetails(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            const discountedPrice = calculateDiscountedPrice(product.price, product.discount);
+            const pricePKR = convertToPKR(discountedPrice);
+            
+            const detailsContainer = document.getElementById('product-details-container');
+            detailsContainer.innerHTML = `
+                <div class="product-gallery">
+                    <img src="${product.image}" alt="${product.name}" class="main-product-image">
+                    <div class="product-thumbnails">
+                        <img src="${product.image}" alt="${product.name}" class="thumbnail active">
+                        <img src="https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Product alternate" class="thumbnail">
+                        <img src="https://images.unsplash.com/photo-1543512214-318c7553f230?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" alt="Product alternate" class="thumbnail">
+                    </div>
+                </div>
+                <div class="product-info-details">
+                    <h1>${product.name}</h1>
+                    <div class="product-price-large">
+                        $${discountedPrice.toFixed(2)}
+                        <span class="price-pkr" style="font-size: 1.5rem;">(PKR ${pricePKR.toLocaleString()})</span>
+                        ${product.discount > 0 ? `<span class="old-price">$${product.price.toFixed(2)}</span>` : ''}
+                        ${product.discount > 0 ? `<span style="background: var(--secondary); color: white; padding: 5px 12px; border-radius: 20px; font-size: 1rem;">Save ${product.discount}%</span>` : ''}
+                    </div>
+                    <div class="product-rating" style="margin-bottom: 20px;">
+                        ${generateStarRating(product.rating)}
+                        <span style="margin-left: 10px; color: var(--gray-dark);">${product.rating}/5 (${Math.floor(Math.random() * 100) + 50} reviews)</span>
+                    </div>
+                    <p class="product-description">${product.description}</p>
+                    <div class="product-options">
+                        <div class="option-group">
+                            <label>Color</label>
+                            <div class="option-buttons">
+                                <button class="option-btn active">Black</button>
+                                <button class="option-btn">Gray</button>
+                                <button class="option-btn">Blue</button>
+                            </div>
+                        </div>
+                        <div class="option-group">
+                            <label>Size</label>
+                            <div class="option-buttons">
+                                <button class="option-btn active">Medium</button>
+                                <button class="option-btn">Large</button>
+                                <button class="option-btn">X-Large</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 15px; margin-top: 30px;">
+                        <button class="btn" style="flex: 1;" onclick="addToCart(${product.id}); showPage('cart');">
+                            <i class="fas fa-cart-plus"></i> Add to Cart
+                        </button>
+                        <button class="btn btn-secondary" style="flex: 1;" onclick="addToCart(${product.id}); showPage('checkout');">
+                            <i class="fas fa-bolt"></i> Buy Now
+                        </button>
+                    </div>
+                    <a href="#" class="track-order-link" onclick="showPage('my-orders'); return false;">
+                        <i class="fas fa-box"></i> View My Orders
+                    </a>
+                </div>
+            `;
+            
+            // Add thumbnail click functionality
+            document.querySelectorAll('.thumbnail').forEach(thumb => {
+                thumb.addEventListener('click', function() {
+                    document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    document.querySelector('.main-product-image').src = this.src;
+                });
+            });
+            
+            // Add option buttons functionality
+            document.querySelectorAll('.option-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const parent = this.parentElement;
+                    parent.querySelectorAll('.option-btn').forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            showPage('product-details');
+        }
+
+        // Cart Functions
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            const discountedPrice = calculateDiscountedPrice(product.price, product.discount);
+            
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    id: product.id,
+                    name: product.name,
+                    price: discountedPrice,
+                    originalPrice: product.price,
+                    image: product.image,
+                    quantity: 1
+                });
+            }
+            
+            localStorage.setItem('bazaar_cart', JSON.stringify(cart));
+            updateCartCount();
+            showNotification(`${product.name} added to cart!`);
+        }
+
+        function updateCartCount() {
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            document.querySelector('.cart-count').textContent = totalItems;
+        }
+
+        function loadCart() {
+            const cartItemsContainer = document.getElementById('cart-items');
+            
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = `
+                    <div style="text-align: center; padding: 50px 20px;">
+                        <i class="fas fa-shopping-cart" style="font-size: 4rem; color: var(--gray-dark); margin-bottom: 20px;"></i>
+                        <h3 style="margin-bottom: 15px; color: var(--dark);">Your cart is empty</h3>
+                        <p style="color: var(--gray-dark); margin-bottom: 30px;">Add some products to your cart to see them here</p>
+                        <a href="#" class="btn" onclick="showPage('products'); return false;">
+                            <i class="fas fa-shopping-bag"></i> Continue Shopping
+                        </a>
+                    </div>
+                `;
+                updateCartSummary(0);
+                return;
+            }
+            
+            cartItemsContainer.innerHTML = '';
+            
+            cart.forEach(item => {
+                const pricePKR = convertToPKR(item.price);
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.innerHTML = `
+                    <div class="cart-item-img">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="cart-item-details">
+                        <h3 class="cart-item-title">${item.name}</h3>
+                        <div class="cart-item-price">
+                            $${item.price.toFixed(2)}
+                            <span class="price-pkr">(PKR ${pricePKR.toLocaleString()})</span>
+                        </div>
+                        <div class="quantity-controls">
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+                            <span class="quantity">${item.quantity}</span>
+                            <button class="quantity-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+                        </div>
+                        <button class="remove-item" onclick="removeFromCart(${item.id})">
+                            <i class="fas fa-trash"></i> Remove
+                        </button>
+                    </div>
+                `;
+                cartItemsContainer.appendChild(itemElement);
+            });
+            
+            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            updateCartSummary(subtotal);
+        }
+
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (!item) return;
+            
+            item.quantity += change;
+            
+            if (item.quantity <= 0) {
+                cart = cart.filter(item => item.id !== productId);
+            }
+            
+            localStorage.setItem('bazaar_cart', JSON.stringify(cart));
+            loadCart();
+            updateCartCount();
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            localStorage.setItem('bazaar_cart', JSON.stringify(cart));
+            loadCart();
+            updateCartCount();
+            showNotification('Item removed from cart');
+        }
+
+        function updateCartSummary(subtotal) {
+            const shipping = subtotal > 0 ? 5.00 : 0;
+            const tax = subtotal * 0.08;
+            const total = subtotal + shipping + tax;
+            
+            const totalPKR = convertToPKR(total);
+            
+            document.getElementById('subtotal').textContent = `$${subtotal.toFixed(2)}`;
+            document.getElementById('shipping').textContent = `$${shipping.toFixed(2)}`;
+            document.getElementById('tax').textContent = `$${tax.toFixed(2)}`;
+            document.getElementById('total').innerHTML = `$${total.toFixed(2)} <span class="price-pkr">(PKR ${totalPKR.toLocaleString()})</span>`;
+        }
+
+        // Checkout Functions
+        function loadCheckout() {
+            const checkoutItemsContainer = document.getElementById('checkout-items');
+            checkoutItemsContainer.innerHTML = '';
+            
+            if (cart.length === 0) {
+                checkoutItemsContainer.innerHTML = '<p style="color: var(--gray-dark); text-align: center; padding: 20px;">Your cart is empty</p>';
+                updateCheckoutSummary(0);
+                return;
+            }
+            
+            cart.forEach(item => {
+                const pricePKR = convertToPKR(item.price);
+                const itemElement = document.createElement('div');
+                itemElement.className = 'cart-item';
+                itemElement.style.borderBottom = '1px solid var(--gray)';
+                itemElement.style.padding = '15px 0';
+                itemElement.innerHTML = `
+                    <div style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+                        <div style="display: flex; align-items: center; gap: 15px;">
+                            <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: 8px;">
+                            <div>
+                                <h4 style="margin: 0 0 5px 0;">${item.name}</h4>
+                                <small style="color: var(--gray-dark);">Qty: ${item.quantity}</small>
+                            </div>
+                        </div>
+                        <div style="font-weight: 700;">
+                            $${(item.price * item.quantity).toFixed(2)}
+                            <div class="price-pkr">PKR ${convertToPKR(item.price * item.quantity).toLocaleString()}</div>
+                        </div>
+                    </div>
+                `;
+                checkoutItemsContainer.appendChild(itemElement);
+            });
+            
+            const subtotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+            updateCheckoutSummary(subtotal);
+            
+            document.getElementById('checkout-form').onsubmit = function(e) {
+                e.preventDefault();
+                placeOrder();
+            };
+        }
+
+        function updateCheckoutSummary(subtotal) {
+            const shipping = subtotal > 0 ? 5.00 : 0;
+            const tax = subtotal * 0.08;
+            const total = subtotal + shipping + tax;
+            
+            const subtotalPKR = convertToPKR(subtotal);
+            const shippingPKR = convertToPKR(shipping);
+            const taxPKR = convertToPKR(tax);
+            const totalPKR = convertToPKR(total);
+            
+            document.getElementById('checkout-subtotal').innerHTML = `$${subtotal.toFixed(2)} <span class="price-pkr">(PKR ${subtotalPKR.toLocaleString()})</span>`;
+            document.getElementById('checkout-shipping').innerHTML = `$${shipping.toFixed(2)} <span class="price-pkr">(PKR ${shippingPKR.toLocaleString()})</span>`;
+            document.getElementById('checkout-tax').innerHTML = `$${tax.toFixed(2)} <span class="price-pkr">(PKR ${taxPKR.toLocaleString()})</span>`;
+            document.getElementById('checkout-total').innerHTML = `$${total.toFixed(2)} <span class="price-pkr">(PKR ${totalPKR.toLocaleString()})</span>`;
+        }
+
+        function placeOrder() {
+            if (cart.length === 0) {
+                showNotification('Your cart is empty!');
+                return;
+            }
+            
+            if (!document.getElementById('terms').checked) {
+                showNotification('Please accept the Terms & Conditions to proceed');
+                return;
+            }
+            
+            const email = document.getElementById('email').value;
+            const paymentMethod = document.querySelector('input[name="payment"]:checked').value;
+            
+            const order = {
+                id: Date.now(),
+                date: new Date().toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'short', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                }),
+                customer: {
+                    name: document.getElementById('first-name').value + ' ' + document.getElementById('last-name').value,
+                    email: email,
+                    phone: document.getElementById('phone').value,
+                    address: document.getElementById('address').value,
+                    city: document.getElementById('city').value,
+                    province: document.getElementById('province').value,
+                    country: 'Pakistan'
+                },
+                payment: {
+                    method: paymentMethod,
+                    status: paymentMethod === 'cod' ? 'cash_on_delivery' : 'pending'
+                },
+                items: [...cart],
+                subtotal: cart.reduce((total, item) => total + (item.price * item.quantity), 0),
+                shipping: 5.00,
+                tax: cart.reduce((total, item) => total + (item.price * item.quantity), 0) * 0.08,
+                status: 'pending',
+                canCancel: true,
+                tracking: {
+                    ordered: new Date().toISOString(),
+                    confirmed: null,
+                    processing: null,
+                    shipped: null,
+                    delivered: null
+                }
+            };
+            
+            order.total = order.subtotal + order.shipping + order.tax;
+            
+            orders.push(order);
+            localStorage.setItem('bazaar_orders', JSON.stringify(orders));
+            
+            if (email) {
+                currentUser = { email: email };
+                localStorage.setItem('bazaar_current_user', JSON.stringify(currentUser));
+            }
+            
+            cart = [];
+            localStorage.setItem('bazaar_cart', JSON.stringify(cart));
+            
+            document.getElementById('checkout-form').reset();
+            document.getElementById('country').value = 'Pakistan';
+            
+            showNotification(`Order #${order.id} placed successfully!`);
+            
+            const confirmationHTML = `
+                <div style="background: white; padding: 30px; border-radius: var(--border-radius); margin-top: 20px; border: 2px solid var(--secondary);">
+                    <h3 style="color: var(--secondary); margin-bottom: 15px;">
+                        <i class="fas fa-check-circle"></i> Order Confirmed!
+                    </h3>
+                    <p>Your order <strong>#${order.id}</strong> has been placed successfully.</p>
+                    <p>Order Total: <strong>$${order.total.toFixed(2)} (PKR ${convertToPKR(order.total).toLocaleString()})</strong></p>
+                    <p>Payment Method: <strong>Cash on Delivery</strong></p>
+                    <p>Estimated Delivery: <strong>3-5 business days</strong></p>
+                    <div style="margin-top: 20px; padding: 15px; background: #f0f9ff; border-radius: 8px;">
+                        <p style="margin-bottom: 10px;"><strong>Important:</strong></p>
+                        <ul style="padding-left: 20px;">
+                            <li>Save your Order ID: <strong>#${order.id}</strong></li>
+                            <li>You will receive a confirmation call within 24 hours</li>
+                            <li>You can view all your orders in the My Orders page</li>
+                            <li>You can cancel your order until it's shipped</li>
+                        </ul>
+                    </div>
+                    <div style="display: flex; gap: 15px; margin-top: 25px; flex-wrap: wrap;">
+                        <button class="btn" onclick="showPage('my-orders')">
+                            <i class="fas fa-box"></i> View My Orders
+                        </button>
+                        <button class="btn btn-outline" onclick="showPage('home')">
+                            <i class="fas fa-home"></i> Continue Shopping
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            document.querySelector('.checkout-container').insertAdjacentHTML('beforeend', confirmationHTML);
+            updateCartCount();
+        }
+
+        // My Orders Functions
+        function loadMyOrders() {
+            const ordersListContainer = document.getElementById('orders-list');
+            const emptyStateContainer = document.getElementById('orders-empty-state');
+            
+            let userEmail = currentUser ? currentUser.email : null;
+            
+            if (!userEmail && orders.length > 0) {
+                userEmail = orders[0].customer.email;
+            }
+            
+            const userOrders = userEmail ? 
+                orders.filter(order => order.customer.email === userEmail) : 
+                [];
+            
+            if (userOrders.length === 0) {
+                emptyStateContainer.classList.remove('hidden');
+                ordersListContainer.classList.add('hidden');
+                return;
+            }
+            
+            emptyStateContainer.classList.add('hidden');
+            ordersListContainer.classList.remove('hidden');
+            ordersListContainer.innerHTML = '';
+            
+            userOrders.sort((a, b) => b.id - a.id);
+            
+            userOrders.forEach(order => {
+                const orderCard = document.createElement('div');
+                orderCard.className = 'order-card';
+                orderCard.innerHTML = generateOrderCardHTML(order);
+                ordersListContainer.appendChild(orderCard);
+            });
+        }
+
+        function generateOrderCardHTML(order) {
+            let itemsHTML = '';
+            order.items.forEach(item => {
+                itemsHTML += `
+                    <div class="order-item">
+                        <div class="order-item-img">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="order-item-details">
+                            <div class="order-item-name">${item.name}</div>
+                            <div class="order-item-price">$${item.price.toFixed(2)} × ${item.quantity}</div>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            return `
+                <div class="order-header">
+                    <div>
+                        <div class="order-id">Order #${order.id}</div>
+                        <div class="order-date">${order.date}</div>
+                    </div>
+                    <div>
+                        <span class="status status-${order.status}">${order.status.charAt(0).toUpperCase() + order.status.slice(1)}</span>
+                    </div>
+                </div>
+                <div class="order-body">
+                    <div class="order-items">
+                        ${itemsHTML}
+                    </div>
+                    <div class="order-summary-col">
+                        <div>
+                            <h4 style="margin-bottom: 10px;">Shipping Address</h4>
+                            <p style="color: var(--gray-dark); font-size: 0.9rem;">
+                                ${order.customer.name}<br>
+                                ${order.customer.address}<br>
+                                ${order.customer.city}, ${order.customer.province}<br>
+                                ${order.customer.country}
+                            </p>
+                        </div>
+                        <div>
+                            <h4 style="margin-bottom: 10px;">Payment Method</h4>
+                            <p style="color: var(--gray-dark); font-size: 0.9rem;">
+                                ${order.payment.method.toUpperCase()}
+                            </p>
+                        </div>
+                    </div>
+                    <div class="order-summary-col">
+                        <div>
+                            <h4 style="margin-bottom: 10px;">Order Summary</h4>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Subtotal:</span>
+                                <span>$${order.subtotal.toFixed(2)}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Shipping:</span>
+                                <span>$${order.shipping.toFixed(2)}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>Tax:</span>
+                                <span>$${order.tax.toFixed(2)}</span>
+                            </div>
+                            <div class="order-total">
+                                Total: $${order.total.toFixed(2)}
+                                <span class="price-pkr" style="font-size: 1rem;">(PKR ${convertToPKR(order.total).toLocaleString()})</span>
+                            </div>
+                        </div>
+                        ${order.canCancel && order.status !== 'shipped' && order.status !== 'delivered' ? `
+                            <div class="order-actions">
+                                <button class="btn btn-small" onclick="cancelOrderFromMyOrders(${order.id})">
+                                    <i class="fas fa-times"></i> Cancel Order
+                                </button>
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        function cancelOrderFromMyOrders(orderId) {
+            if (!confirm('Are you sure you want to cancel this order? This action cannot be undone.')) {
+                return;
+            }
+            
+            const orderIndex = orders.findIndex(o => o.id === orderId);
+            if (orderIndex !== -1) {
+                if (orders[orderIndex].status === 'shipped' || orders[orderIndex].status === 'delivered') {
+                    showNotification('This order cannot be cancelled as it has already been shipped.');
+                    return;
+                }
+                
+                orders[orderIndex].status = 'cancelled';
+                orders[orderIndex].canCancel = false;
+                localStorage.setItem('bazaar_orders', JSON.stringify(orders));
+                loadMyOrders();
+                showNotification('Order has been cancelled successfully.');
+            }
+        }
+
+        // Admin Functions
+        function showAdminSection(sectionId) {
+            document.querySelectorAll('.admin-section-content').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            document.getElementById(sectionId + '-section').classList.remove('hidden');
+            
+            document.querySelectorAll('.admin-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            document.querySelector(`.admin-menu a[onclick*="${sectionId}"]`).classList.add('active');
+            
+            if (sectionId === 'dashboard') {
+                loadDashboard();
+            } else if (sectionId === 'products-management') {
+                loadAdminProducts();
+            } else if (sectionId === 'orders') {
+                loadAdminOrders();
+            } else if (sectionId === 'editor') {
+                loadMediaGallery();
+                initializeEditor();
+            }
+        }
+
+        // Initialize Quill Editor
+        function initializeEditor() {
+            if (!quill) {
+                quill = new Quill('#quill-editor', {
+                    theme: 'snow',
+                    modules: {
+                        toolbar: [
+                            [{ 'header': [1, 2, 3, false] }],
+                            ['bold', 'italic', 'underline', 'strike'],
+                            [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+                            ['link', 'image', 'video'],
+                            ['clean']
+                        ]
+                    }
+                });
+            }
+        }
+
+        // Load Media Gallery
+        function loadMediaGallery() {
+            const gallery = document.getElementById('media-gallery');
+            gallery.innerHTML = '';
+            
+            mediaLibrary.forEach((media, index) => {
+                const mediaItem = document.createElement('div');
+                mediaItem.className = 'media-item';
+                mediaItem.dataset.index = index;
+                
+                if (media.type === 'image') {
+                    mediaItem.innerHTML = `
+                        <img src="${media.url}" alt="Media ${index + 1}">
+                        <div class="media-actions">
+                            <button onclick="insertMedia('${media.url}', 'image')">
+                                <i class="fas fa-plus"></i> Insert
+                            </button>
+                            <button onclick="deleteMedia(${index})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                } else if (media.type === 'video') {
+                    mediaItem.innerHTML = `
+                        <video src="${media.url}" controls></video>
+                        <div class="media-actions">
+                            <button onclick="insertMedia('${media.url}', 'video')">
+                                <i class="fas fa-plus"></i> Insert
+                            </button>
+                            <button onclick="deleteMedia(${index})">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    `;
+                }
+                
+                gallery.appendChild(mediaItem);
+            });
+        }
+
+        // Handle Media Upload
+        function handleMediaUpload(event) {
+            const files = event.target.files;
+            const maxSize = 10 * 1024 * 1024;
+            
+            for (let file of files) {
+                if (file.size > maxSize) {
+                    showNotification(`File ${file.name} is too large. Maximum size is 10MB.`);
+                    continue;
+                }
+                
+                const url = URL.createObjectURL(file);
+                const type = file.type.startsWith('video/') ? 'video' : 'image';
+                
+                mediaLibrary.push({
+                    url: url,
+                    type: type,
+                    name: file.name,
+                    size: file.size,
+                    uploaded: new Date().toISOString()
+                });
+            }
+            
+            localStorage.setItem('bazaar_media_library', JSON.stringify(mediaLibrary));
+            loadMediaGallery();
+            showNotification('Media uploaded successfully!');
+            
+            event.target.value = '';
+        }
+
+        // Insert Media into Editor
+        function insertMedia(url, type) {
+            if (!quill) return;
+            
+            const range = quill.getSelection();
+            if (range) {
+                if (type === 'image') {
+                    quill.insertEmbed(range.index, 'image', url);
+                } else if (type === 'video') {
+                    quill.insertEmbed(range.index, 'video', url);
+                }
+            }
+        }
+
+        // Delete Media
+        function deleteMedia(index) {
+            if (confirm('Are you sure you want to delete this media item?')) {
+                mediaLibrary.splice(index, 1);
+                localStorage.setItem('bazaar_media_library', JSON.stringify(mediaLibrary));
+                loadMediaGallery();
+                showNotification('Media deleted successfully!');
+            }
+        }
+
+        // Load Page Content in Editor
+        function loadPageContent() {
+            const pageSelect = document.getElementById('editor-page-select');
+            const pageId = pageSelect.value;
+            
+            if (!pageId) {
+                document.getElementById('editor-content').classList.add('hidden');
+                return;
+            }
+            
+            document.getElementById('editor-content').classList.remove('hidden');
+            
+            if (pageId === 'new') {
+                document.getElementById('editor-title').value = '';
+                document.getElementById('editor-url').value = '';
+                document.getElementById('editor-seo-title').value = '';
+                document.getElementById('editor-seo-description').value = '';
+                document.getElementById('editor-seo-keywords').value = '';
+                
+                if (quill) {
+                    quill.setContents([]);
+                }
+            } else {
+                const page = pageContent[pageId];
+                if (page) {
+                    document.getElementById('editor-title').value = page.title || '';
+                    document.getElementById('editor-url').value = pageId;
+                    document.getElementById('editor-seo-title').value = page.seoTitle || '';
+                    document.getElementById('editor-seo-description').value = page.seoDescription || '';
+                    document.getElementById('editor-seo-keywords').value = page.seoKeywords || '';
+                    
+                    if (quill && page.content) {
+                        quill.root.innerHTML = page.content;
+                    }
+                }
+            }
+        }
+
+        // Save Page Content
+        function savePageContent() {
+            const pageSelect = document.getElementById('editor-page-select');
+            const pageId = pageSelect.value === 'new' ? 
+                document.getElementById('editor-url').value.toLowerCase().replace(/\s+/g, '-') : 
+                pageSelect.value;
+            
+            if (!pageId) {
+                showNotification('Please enter a page URL');
+                return;
+            }
+            
+            const pageData = {
+                title: document.getElementById('editor-title').value,
+                content: quill ? quill.root.innerHTML : '',
+                seoTitle: document.getElementById('editor-seo-title').value,
+                seoDescription: document.getElementById('editor-seo-description').value,
+                seoKeywords: document.getElementById('editor-seo-keywords').value,
+                updated: new Date().toISOString()
+            };
+            
+            pageContent[pageId] = pageData;
+            localStorage.setItem('bazaar_page_content', JSON.stringify(pageContent));
+            
+            if (pageSelect.value === 'new') {
+                const option = document.createElement('option');
+                option.value = pageId;
+                option.textContent = pageData.title;
+                pageSelect.appendChild(option);
+                pageSelect.value = pageId;
+            }
+            
+            showNotification('Page saved successfully!');
+        }
+
+        // Admin Login
+        document.getElementById('login-form').onsubmit = function(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            const user = adminUsers.find(u => u.email === email && u.password === password);
+            
+            if (user) {
+                currentAdmin = user;
+                localStorage.setItem('bazaar_current_admin', JSON.stringify(user));
+                showPage('admin-panel');
+                showAdminSection('dashboard');
+                document.getElementById('login-form').reset();
+                showNotification('Welcome to Bazaar Admin Panel!');
+            } else {
+                showNotification('Invalid email or password!');
+            }
+        };
+
+        // Admin Signup
+        document.getElementById('signup-form').onsubmit = function(e) {
+            e.preventDefault();
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            if (password !== confirmPassword) {
+                showNotification('Passwords do not match!');
+                return;
+            }
+            
+            const existingUser = adminUsers.find(u => u.email === email);
+            if (existingUser) {
+                showNotification('User with this email already exists!');
+                return;
+            }
+            
+            const newUser = { email, password, name };
+            adminUsers.push(newUser);
+            localStorage.setItem('bazaar_admin_users', JSON.stringify(adminUsers));
+            
+            currentAdmin = newUser;
+            localStorage.setItem('bazaar_current_admin', JSON.stringify(newUser));
+            
+            showPage('admin-panel');
+            showAdminSection('dashboard');
+            document.getElementById('signup-form').reset();
+            showNotification('Account created successfully!');
+        };
+
+        // Load Dashboard
+        function loadDashboard() {
+            const totalOrders = orders.length;
+            const totalProducts = products.length;
+            const pendingOrders = orders.filter(o => o.status === 'pending').length;
+            const totalRevenue = orders.reduce((total, order) => total + order.total, 0);
+            
+            document.getElementById('total-orders').textContent = totalOrders;
+            document.getElementById('total-products').textContent = totalProducts;
+            document.getElementById('pending-orders').textContent = pendingOrders;
+            document.getElementById('total-revenue').textContent = `$${totalRevenue.toFixed(2)}`;
+            
+            const recentOrdersContainer = document.getElementById('recent-orders');
+            recentOrdersContainer.innerHTML = '';
+            
+            const recentOrders = orders.slice(-5).reverse();
+            
+            if (recentOrders.length === 0) {
+                recentOrdersContainer.innerHTML = `
+                    <tr>
+                        <td colspan="5" style="text-align: center; color: var(--gray-dark); padding: 30px;">
+                            <i class="fas fa-shopping-cart" style="font-size: 2rem; margin-bottom: 15px; display: block;"></i>
+                            No orders yet
+                        </td>
+                    </tr>
+                `;
+            } else {
+                recentOrders.forEach(order => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>#${order.id}</td>
+                        <td>${order.customer.name}</td>
+                        <td>${order.date}</td>
+                        <td>$${order.total.toFixed(2)}</td>
+                        <td><span class="status status-${order.status}">${order.status.charAt(0).toUpperCase() + order.status.slice(1)}</span></td>
+                    `;
+                    recentOrdersContainer.appendChild(row);
+                });
+            }
+        }
+
+        // Product Management
+        function loadAdminProducts() {
+            const productsList = document.getElementById('admin-products-list');
+            productsList.innerHTML = '';
+            
+            if (products.length === 0) {
+                productsList.innerHTML = `
+                    <tr>
+                        <td colspan="6" style="text-align: center; color: var(--gray-dark); padding: 30px;">
+                            <i class="fas fa-box" style="font-size: 2rem; margin-bottom: 15px; display: block;"></i>
+                            No products yet. Add your first product!
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            products.forEach(product => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${product.id}</td>
+                    <td>
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <img src="${product.image}" alt="${product.name}" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;">
+                            <div>
+                                <div style="font-weight: 600;">${product.name}</div>
+                                <small style="color: var(--gray-dark);">${product.category}</small>
+                            </div>
+                        </div>
+                    </td>
+                    <td>${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</td>
+                    <td>$${product.price.toFixed(2)}</td>
+                    <td>${product.stock}</td>
+                    <td>
+                        <button class="btn btn-small" onclick="editProduct(${product.id})">
+                            <i class="fas fa-edit"></i> Edit
+                        </button>
+                        <button class="btn btn-secondary btn-small" onclick="deleteProduct(${product.id})">
+                            <i class="fas fa-trash"></i> Delete
+                        </button>
+                    </td>
+                `;
+                productsList.appendChild(row);
+            });
+        }
+
+        function showAddProductForm() {
+            document.getElementById('product-form-container').classList.remove('hidden');
+            document.getElementById('form-title').textContent = 'Add New Product';
+            document.getElementById('product-form').reset();
+            document.getElementById('product-form').dataset.editingId = '';
+            document.getElementById('product-form').onsubmit = function(e) {
+                e.preventDefault();
+                saveProduct();
+            };
+        }
+
+        function hideProductForm() {
+            document.getElementById('product-form-container').classList.add('hidden');
+        }
+
+        function saveProduct() {
+            const name = document.getElementById('product-name').value;
+            const price = parseFloat(document.getElementById('product-price').value);
+            const description = document.getElementById('product-description').value;
+            const category = document.getElementById('product-category').value;
+            const stock = parseInt(document.getElementById('product-stock').value);
+            const image = document.getElementById('product-image').value;
+            
+            const productId = document.getElementById('product-form').dataset.editingId;
+            
+            if (productId) {
+                const productIndex = products.findIndex(p => p.id === parseInt(productId));
+                if (productIndex !== -1) {
+                    products[productIndex] = {
+                        ...products[productIndex],
+                        name,
+                        price,
+                        description,
+                        category,
+                        stock,
+                        image
+                    };
+                }
+                delete document.getElementById('product-form').dataset.editingId;
+            } else {
+                const newId = products.length > 0 ? Math.max(...products.map(p => p.id)) + 1 : 1;
+                products.push({
+                    id: newId,
+                    name,
+                    price,
+                    description,
+                    category,
+                    image,
+                    stock,
+                    rating: 4.0 + Math.random() * 0.9,
+                    discount: Math.random() > 0.5 ? Math.floor(Math.random() * 30) + 5 : 0
+                });
+            }
+            
+            localStorage.setItem('bazaar_products', JSON.stringify(products));
+            loadAdminProducts();
+            hideProductForm();
+            showNotification('Product saved successfully!');
+        }
+
+        function editProduct(productId) {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+            
+            document.getElementById('product-form-container').classList.remove('hidden');
+            document.getElementById('form-title').textContent = 'Edit Product';
+            
+            document.getElementById('product-name').value = product.name;
+            document.getElementById('product-price').value = product.price;
+            document.getElementById('product-description').value = product.description;
+            document.getElementById('product-category').value = product.category;
+            document.getElementById('product-stock').value = product.stock;
+            document.getElementById('product-image').value = product.image;
+            
+            document.getElementById('product-form').dataset.editingId = productId;
+            
+            document.getElementById('product-form').onsubmit = function(e) {
+                e.preventDefault();
+                saveProduct();
+            };
+        }
+
+        function deleteProduct(productId) {
+            if (confirm('Are you sure you want to delete this product? This action cannot be undone.')) {
+                products = products.filter(p => p.id !== productId);
+                localStorage.setItem('bazaar_products', JSON.stringify(products));
+                loadAdminProducts();
+                showNotification('Product deleted successfully!');
+            }
+        }
+
+        // Order Management
+        function loadAdminOrders() {
+            const ordersList = document.getElementById('admin-orders-list');
+            ordersList.innerHTML = '';
+            
+            if (orders.length === 0) {
+                ordersList.innerHTML = `
+                    <tr>
+                        <td colspan="7" style="text-align: center; color: var(--gray-dark); padding: 30px;">
+                            <i class="fas fa-shopping-cart" style="font-size: 2rem; margin-bottom: 15px; display: block;"></i>
+                            No orders yet
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            orders.forEach(order => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>#${order.id}</td>
+                    <td>
+                        <div style="font-weight: 600;">${order.customer.name}</div>
+                        <small style="color: var(--gray-dark);">${order.customer.email}</small>
+                    </td>
+                    <td>${order.items.length} item(s)</td>
+                    <td>${order.date}</td>
+                    <td>$${order.total.toFixed(2)}</td>
+                    <td><span class="status status-${order.status}">${order.status.charAt(0).toUpperCase() + order.status.slice(1)}</span></td>
+                    <td>
+                        <button class="btn btn-small" onclick="adminViewOrder(${order.id})">
+                            <i class="fas fa-eye"></i> View
+                        </button>
+                        <button class="btn btn-secondary btn-small" onclick="adminUpdateOrderStatus(${order.id})">
+                            <i class="fas fa-sync"></i> Update
+                        </button>
+                    </td>
+                `;
+                ordersList.appendChild(row);
+            });
+        }
+
+        // Logout Admin
+        function logoutAdmin() {
+            currentAdmin = null;
+            localStorage.removeItem('bazaar_current_admin');
+            showPage('home');
+            showNotification('Logged out successfully');
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add CSS for animations
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+                
+                @keyframes slideOut {
+                    from { transform: translateX(0); opacity: 1; }
+                    to { transform: translateX(100%); opacity: 0; }
+                }
+                
+                @keyframes fadeIn {
+                    from { opacity: 0; }
+                    to { opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Check if admin is logged in
+            currentAdmin = JSON.parse(localStorage.getItem('bazaar_current_admin'));
+            
+            // Initialize website content
+            initializeWebsiteContent();
+            
+            // Load featured products
+            loadFeaturedProducts();
+            
+            // Update cart count
+            updateCartCount();
+            
+            // Set default active nav link
+            document.querySelector('nav a[onclick*="home"]').classList.add('active');
+            
+            // Setup edit form event listeners
+            document.getElementById('edit-hero-title').addEventListener('input', updateHeroTitlePreview);
+            document.getElementById('edit-hero-description').addEventListener('input', updateHeroDescriptionPreview);
+        });
+    </script>
+</body>
+</html>
